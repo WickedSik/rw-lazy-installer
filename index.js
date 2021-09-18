@@ -10,6 +10,14 @@ import GitRepo from 'simple-git'
 import { program } from 'commander'
 
 const INSTALLED_MODS_CONFIG_FIELD = 'installed-mods'
+const HEADER_ASCII_ART = `______   ___  _    _   _                       _____          _        _ _           
+| ___ \\ |_  || |  | | | |                     |_   _|        | |      | | |          
+| |_/ /   | || |  | | | |     __ _ _____   _    | | _ __  ___| |_ __ _| | | ___ _ __ 
+|    /    | || |/\\| | | |    / _\` |_  / | | |   | || '_ \\/ __| __/ _\` | | |/ _ \\ '__|
+| |\\ \\/\\__/ /\\  /\\  / | |___| (_| |/ /| |_| |  _| || | | \\__ \\ || (_| | | |  __/ |   
+\\_| \\_\\____/  \\/  \\/  \\_____/\\__,_/___|\\__, |  \\___/_| |_|___/\\__\\__,_|_|_|\\___|_|   
+                                        __/ |                                        
+                                       |___/                                         `
 
 async function importJson(file) {
     return JSON.parse(await readFile(new URL(file, import.meta.url)))
@@ -28,7 +36,7 @@ const config = new Config({ projectName: 'rimworld-lazy-installer '})
 
 program.version('1.0.0')
 program
-    .option('-d, --dir', 'RimWorld Mod Directory', cwd())
+    .option('-d, --dir <dir>', 'RimWorld Mod Directory', cwd())
 
 program
     .command('install <name>')
@@ -46,21 +54,17 @@ program
     .action(help)
 
 program
-    .command('list')
+    .command('check')
     .description('Reads and lists installed mods')
     .action(() => {
-        init(help)
-    })
-
-program
-    .command('debug')
-    .action(() => {
-        const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
-        console.debug(installed)
+        init(() => {})
     })
 
 function init(callback) {
-    const installationDir = program.opts().dir || cwd()
+    const installationDir = (program.opts()).dir
+
+    console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
+    console.log(chalk.green`Checking`, chalk.yellow`${installationDir}`, chalk.green`for installed mods\n`)
 
     // first run
     fs.readdir(installationDir, async (err, files) => {
@@ -70,18 +74,25 @@ function init(callback) {
             })
             .map(async file => {
                 const dir = path.join(installationDir, file)
-                const repo = GitRepo(dir)
+
                 try {
+                    const repo = GitRepo(dir)
                     await repo.fetch()
                     const remotes = await repo.getRemotes(true)
                     const fetch = remotes[0].refs.fetch
 
-                    if(isModRemote(fetch)) {
-                        const mod = mods.find(m => m.remote === fetch).name
+                    if(isModRemote(fetch)) {                        
+                        const mod = mods.find(m => m.remote === fetch)
+
+                        if(isInstalledMod(fetch)) {
+                            console.log(chalk.green`\tFound`, chalk.white`${mod.name}`, chalk.green`as installed mod`)
+                        } else {
+                            console.log(chalk.green`\tAdding`, chalk.white`${mod.name}`, chalk.green`as new mod`)
+                        }
                         
                         return {
                             name: file,
-                            mod,
+                            mod: mod.name,
                             dir,
                             remote: remotes[0].refs.fetch
                         }
@@ -94,6 +105,8 @@ function init(callback) {
             })
         
         Promise.all(x).then(entry => {
+            console.log(chalk.green`\n`)
+
             config.set(INSTALLED_MODS_CONFIG_FIELD, entry.filter(e => e))
         }).finally(() => {
             callback()
@@ -105,10 +118,8 @@ function help() {
     const installationDir = program.opts().dir || cwd()
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
 
-    console.log(chalk.green`
-Lazy Installer and updater for RJW and submods
-
-You have installed:\n`)
+    console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
+    console.log(chalk.green`You have installed:\n`)
 
     if(installed && installed.length) {
         installed.map(i => {
@@ -133,6 +144,8 @@ You have installed:\n`)
 function install(mod) {
     const installationDir = program.opts().dir || cwd()
     const m = mods.find(m => m.name === mod)
+
+    console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     
     if(!m) {
         console.log(chalk.red`Mod ${mod} is not a known mod and cannot be installed`)
@@ -166,20 +179,22 @@ function install(mod) {
 
 function update() {
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
+
+    console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     
     const x = installed.map(async mod => {
         try {
             const repo = GitRepo(mod.dir)
-            await repo.fetch().pull()
+            const status = await repo.fetch().pull().revparse('HEAD')
             
-            console.log(chalk.green`- Updated`, chalk.white`${mod.name}`)
+            console.log(chalk.green`- Updated`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${status.substr(0, 6)}]`)
         } catch(e) {
             console.log(chalk.red`Failed to update ${mod.name}, please check the git repo at ${mod.dir}`)
         }
     })
 
     Promise.all(x).then(() => {
-        console.log(chalk.green`All Mods updated!`)
+        console.log(chalk.green`\nAll Mods updated!\n`)
     })
 }
 

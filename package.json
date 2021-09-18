@@ -1,16 +1,16 @@
 {
-  "name": "rjw-lazy-installer",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "type": "module",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "commander": "^8.2.0",
-    "conf": "^10.0.3",
-    "simple-git": "^2.45.1"
-  },
-  "bin": {
-    "rjw-lazy-installer": "index.js"
-  }
+    "name": "rjw-lazy-installer",
+    "version": "1.0.1",
+    "main": "index.js",
+    "license": "MIT",
+    "type": "module",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "commander": "^8.2.0",
+        "conf": "^10.0.3",
+        "simple-git": "^2.45.1"
+    },
+    "bin": {
+        "rjw-lazy-installer": "index.js"
+    }
 }
