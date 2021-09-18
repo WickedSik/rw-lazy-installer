@@ -1,0 +1,102 @@
+[
+    {
+        "label": "RimJobWorld",
+        "name": "rjw",
+        "remote": "https://gitgud.io/Ed86/rjw.git"
+    },
+    {
+        "label": "RJW EX",
+        "name": "rjw-ex",
+        "remote": "https://gitgud.io/Ed86/rjw-ex.git"
+    },
+    {
+        "label": "RJW Race Support",
+        "name": "rjw-race-support",
+        "remote": "https://gitgud.io/Abraxas/rjw-race-support.git"
+    },
+    {
+        "label": "RJW MC",
+        "name": "rjw-mc",
+        "remote": "https://gitgud.io/Ed86/rjw-mc.git"
+    },
+    {
+        "label": "RJW Animations",
+        "name": "Rimworld-Animations",
+        "remote": "https://gitgud.io/c0ffeeeeeeee/rimworld-animations.git"
+    },
+    {
+        "label": "AnimAddons - Animal Patch",
+        "name": "rjwanimaddons-animalpatch",
+        "remote": "https://gitgud.io/Tory/rjwanimaddons-animalpatch.git"
+    },
+    {
+        "label": "AnimAddons - Xtra Anims",
+        "name": "rjwanimaddons-xtraanims",
+        "remote": "https://gitgud.io/Tory/rjwanimaddons-xtraanims.git"
+    },
+    {
+        "label": "AnimAddons - Voice Patch",
+        "name": "animaddons-voicepatch",
+        "remote": "https://gitgud.io/Tory/animaddons-voicepatch.git"
+    },
+    {
+        "label": "Licentia Labs",
+        "name": "licentia-labs",
+        "remote": "https://gitgud.io/John-the-Anabaptist/licentia-labs.git"
+    },
+    {
+        "label": "Nephila RJW",
+        "name": "nephila-rjw",
+        "remote": "https://gitgud.io/HiveBro/nephila-rjw.git"
+    },
+    {
+        "label": "RJW Menstruation",
+        "name": "RJW_Menstruation",
+        "remote": "https://github.com/moreoreganostodump/RJW_Menstruation.git"
+    },
+    {
+        "label": "s16's Extension",
+        "name": "s16s-extension",
+        "remote": "https://gitlab.com/Hazzer/s16s-extension.git"
+    },
+    {
+        "label": "RJW Events",
+        "name": "rjw-events",
+        "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-events.git"
+    },
+    {
+        "label": "SCC Lewd Sculptures",
+        "name": "scc-lewd-sculptures",
+        "remote": "https://gitgud.io/SpiritCookieCake/scc-lewd-sculptures.git"
+    },
+    {
+        "label": "RimJobWorld Ideology Addon",
+        "name": "rimjobworld-ideology-addon",
+        "remote": "https://gitgud.io/Tittydragon/rimjobworld-ideology-addon.git"
+    },
+    {
+        "label": "coffees RJW Ideology Addons",
+        "name": "coffees-rjw-ideology-addons",
+        "remote": "https://gitgud.io/c0ffeeeeeeee/coffees-rjw-ideology-addons.git"
+    },
+    {
+        "label": "RJW Sexperience",
+        "name": "RJW-Sexperience",
+        "remote": "https://github.com/moreoreganostodump/RJW-Sexperience.git"
+    },
+    {
+        "label": "BetterRJW - Do not install together with RJW",
+        "name": "betterrjw",
+        "remote": "https://gitgud.io/EaglePhntm/betterrjw.git"
+    },
+    {
+        "label": "RJW Whorebeds",
+        "name": "rjw-Whorebeds",
+        "remote": "https://gitgud.io/Ed86/rjw-whorebeds.git"
+    },
+    {
+        "label": "Rimnosis NSFW",
+        "name": "Rimnosis",
+        "remote": "https://github.com/WolfoftheWest/Rimnosis.git"
+    }
+]
