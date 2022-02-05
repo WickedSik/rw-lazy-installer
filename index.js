@@ -185,9 +185,14 @@ function update() {
     const x = installed.map(async mod => {
         try {
             const repo = GitRepo(mod.dir)
+            const current = await repo.revparse('HEAD')
             const status = await repo.fetch().pull().revparse('HEAD')
             
-            console.log(chalk.green`- Updated`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${status.substr(0, 6)}]`)
+            if(current === status) {
+                console.log(chalk.green`- Updated`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${status.substring(0, 6)}]`)
+            } else {
+                console.log(chalk.green`- Updated`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${current.substring(0, 6)} -> ${status.substring(0, 6)}]`)
+            }
         } catch(e) {
             console.log(chalk.red`Failed to update ${mod.name}, please check the git repo at ${mod.dir}`)
         }

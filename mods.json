@@ -98,5 +98,30 @@
         "label": "Rimnosis NSFW",
         "name": "Rimnosis",
         "remote": "https://github.com/WolfoftheWest/Rimnosis.git"
+    },
+    {
+        "label": "RJW Toys and Animations",
+        "name": "rjw-toys-and-masturbation",
+        "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-toys-and-masturbation.git"
+    },
+    {
+        "label": "Rimvore 2",
+        "name": "rimvore-2",
+        "remote": "https://gitlab.com/Nabber/rimvore-2"
+    },
+    {
+        "label": "RimNude Unofficial - Do not install together with OTY Nude",
+        "name": "rimnude-unofficial",
+        "remote": "https://gitgud.io/Tory/rimnude-unofficial.git"
+    },
+    {
+        "label": "OTY Nude Unofficial - Do not install together with RimNude",
+        "name": "oty-nude-unofficial",
+        "remote": "https://gitgud.io/Tory/oty-nude-unofficial.git"
+    },
+    {
+        "label": "RJW Pawnmorpher Support - Requires PawnMorpher",
+        "name": "rjw-pawnmorpher-support",
+        "remote": "https://gitgud.io/a-flock-of-birds/rjw-pawnmorpher-support.git"
     }
 ]
