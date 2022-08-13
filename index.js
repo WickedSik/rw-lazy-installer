@@ -116,7 +116,7 @@ function init(callback) {
 
 function help() {
     const installationDir = program.opts().dir || cwd()
-    const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
+    const installed = config.get(INSTALLED_MODS_CONFIG_FIELD).sort((a, b) => a.name.localeCompare(b.name))
 
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     console.log(chalk.green`You have installed:\n`)
@@ -133,7 +133,7 @@ function help() {
     console.log(chalk.green`\nInstall or update the mods with the ${chalk.bold.white`install`} or ${chalk.bold.white`update`} command.\n`)
     console.log(chalk.green`\nInstallable mods:\n\n`)
 
-    mods.map(mod => {
+    mods.sort((a, b) => a.name.localeCompare(b.name)).map(mod => {
         if(!isInstalledMod(mod.remote)) {
             console.log(chalk.green`\t${mod.label.padEnd(50)}`, chalk.bold.white`${mod.name.padEnd(30)}`, chalk.yellow`${mod.remote}`)
         }
@@ -178,7 +178,7 @@ function install(mod) {
 }
 
 function update() {
-    const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
+    const installed = config.get(INSTALLED_MODS_CONFIG_FIELD).sort((a, b) => a.name.localeCompare(b.name))
 
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     
