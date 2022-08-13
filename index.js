@@ -97,6 +97,7 @@ function init(callback) {
                             remote: remotes[0].refs.fetch
                         }
                     } else {
+                        console.log(chalk.red`\tFound`, chalk.white`${file}`, chalk.red`as unknown remote:`, chalk.yellow`${fetch}`)
                         return undefined
                     }
                 } catch(e) {
