@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import path from 'path'
-import { readFile } from 'fs/promises'
+import { readFile, unlink } from 'fs/promises'
 import { cwd } from 'process'
 import chalk from 'chalk'
 import Config from 'conf'
@@ -32,7 +32,7 @@ const isInstalledMod = (remote) => {
     return installed.filter(i => i.remote === remote).length > 0
 }
 
-const config = new Config({ projectName: 'rimworld-lazy-installer '})
+const config = new Config({ projectName: 'rimworld-lazy-installer' })
 
 program.version('1.0.0')
 program
@@ -46,7 +46,14 @@ program
 program
     .command('update')
     .description('Updates mods, this command will not install new mods')
+    .option('-l, --log', 'Show changelog')
+    .option('-r, --relevant', 'Show changelog for updated mods')
     .action(update)
+
+program
+    .command('uninstall <name>')
+    .description('Uninstalls mod if installed')
+    .action(uninstall)
 
 program
     .command('help', { isDefault: true })
@@ -178,8 +185,10 @@ function install(mod) {
     }
 }
 
-function update() {
+function update(opts) {
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD).sort((a, b) => a.name.localeCompare(b.name))
+    const showChangeLog = !!opts.log
+    const showOnlyUpdatedChangeLog = !!opts.relevant
 
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     
@@ -188,20 +197,58 @@ function update() {
             const repo = GitRepo(mod.dir)
             const current = await repo.revparse('HEAD')
             const status = await repo.fetch().pull().revparse('HEAD')
+
+            let log = []
+            if(showChangeLog || (showOnlyUpdatedChangeLog && current !== status)) {
+                const changelog = await repo.log({ '--max-count': 5 })
+                log = changelog.all.map(line => `\t[${line.hash.substring(0, 6)}] ${line.message}`)
+            }
             
             if(current === status) {
-                console.log(chalk.green`- Updated`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${status.substring(0, 6)}]`)
+                console.log(chalk.green`- Checked`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${status.substring(0, 6)}]`)
             } else {
                 console.log(chalk.green`- Updated`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${current.substring(0, 6)} -> ${status.substring(0, 6)}]`)
             }
+            log.map(line => console.log(chalk.white`${line}`))
+
         } catch(e) {
-            console.log(chalk.red`Failed to update ${mod.name}, please check the git repo at ${mod.dir}`)
+            console.log(chalk.red`Failed to update ${mod.name}, please check the git repo at ${mod.dir}: ${e}`)
         }
     })
 
     Promise.all(x).then(() => {
         console.log(chalk.green`\nAll Mods updated!\n`)
     })
+}
+
+function uninstall(mod) {
+    const m = mods.find(m => m.name === mod)
+
+    console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
+    
+    if(!m) {
+        console.log(chalk.red`Mod ${mod} is not a known mod and cannot be uninstalled`)
+    } else if(!isInstalledMod(m.remote)) {
+        console.log(chalk.red`This mod is not installed`)
+    } else {
+        const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
+        const installDir = installed.find(i => i.remote === m.remote).dir
+
+        const ret = async () => {
+            await unlink(`${installDir}/.git`)
+            await unlink(installDir)
+        }
+
+        ret().then(() => {
+            config.set(INSTALLED_MODS_CONFIG_FIELD, installed.filter(i => i.remote === m.remote))
+
+            console.log(chalk.green`Uninstalled ${m.name}`)
+        }).catch((err) => {
+            console.log(chalk.white`Something went wrong uninstalling ${mod}: ${chalk.red`${err}`}\n\nPlease run manually:`)
+            console.log(chalk.yellow`\trm -rf ${installDir}/.git`)
+            console.log(chalk.yellow`\trm -r ${installDir}`)
+        })
+    }
 }
 
 program.parse()
