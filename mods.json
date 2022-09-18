@@ -168,5 +168,15 @@
         "label": "RJW - Milkable Colonists",
         "name": "rjw-mc",
         "remote": "https://gitgud.io/Ed86/rjw-mc.git"
+    },
+    {
+        "label": "RJW - Pregnancy Stages Graphics",
+        "name": "rjw-pregnancy-stages-graphics",
+        "remote": "https://gitgud.io/Akiya82/rjw-pregnancy-stages-graphics.git"
+    },
+    {
+        "label": "Carniculus",
+        "name": "carniculus",
+        "remote": "https://github.com/muri-desu/Carniculus.git"
     }
 ]
