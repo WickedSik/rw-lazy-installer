@@ -9,6 +9,7 @@ import Config from 'conf'
 import GitRepo from 'simple-git'
 import { program } from 'commander'
 
+const INSTALLATION_DIR_CONFIG_FIELD = 'installation-dir'
 const INSTALLED_MODS_CONFIG_FIELD = 'installed-mods'
 const HEADER_ASCII_ART = `______   ___  _    _   _                       _____          _        _ _           
 | ___ \\ |_  || |  | | | |                     |_   _|        | |      | | |          
@@ -29,19 +30,27 @@ const isModRemote = (url) => {
 }
 const isInstalledMod = (remote) => {
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
-    return installed.filter(i => i.remote === remote).length > 0
+    return typeof(installed) === 'undefined' ? false : installed.filter(i => i.remote === remote).length > 0
 }
 
 const config = new Config({ projectName: 'rimworld-lazy-installer' })
 
+const modInstallationDir = (opt) => {
+    return (opt && opt.dir) || config.get(INSTALLATION_DIR_CONFIG_FIELD) || process.cwd()
+}
+
 program.version('1.0.0')
 program
-    .option('-d, --dir <dir>', 'RimWorld Mod Directory', cwd())
+    .option('-d, --dir <dir>', 'RimWorld Mod Directory')
 
 program
-    .command('install <name>')
+    .command('install <name...>')
     .description('Install mods that do not exist yet, this command will not update')
-    .action(install)
+    .action((mods) => {
+        console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
+
+        mods.map(m => install(m))
+    })
 
 program
     .command('update')
@@ -51,9 +60,13 @@ program
     .action(update)
 
 program
-    .command('uninstall <name>')
+    .command('uninstall <name...>')
     .description('Uninstalls mod if installed')
-    .action(uninstall)
+    .action((mods) => {
+        console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
+
+        mods.map(m => uninstall(m))
+    })
 
 program
     .command('help', { isDefault: true })
@@ -68,7 +81,7 @@ program
     })
 
 function init(callback) {
-    const installationDir = (program.opts()).dir
+    const installationDir = modInstallationDir(program.opts())
 
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     console.log(chalk.green`Checking`, chalk.yellow`${installationDir}`, chalk.green`for installed mods\n`)
@@ -115,6 +128,8 @@ function init(callback) {
         Promise.all(x).then(entry => {
             console.log(chalk.green`\n`)
 
+            console.log(chalk.green`Saving installation dir and installed mods to config\n`)
+            config.set(INSTALLATION_DIR_CONFIG_FIELD, installationDir)
             config.set(INSTALLED_MODS_CONFIG_FIELD, entry.filter(e => e))
         }).finally(() => {
             callback()
@@ -123,7 +138,7 @@ function init(callback) {
 }
 
 function help() {
-    const installationDir = program.opts().dir || cwd()
+    const installationDir = modInstallationDir(program.opts())
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD).sort((a, b) => a.name.localeCompare(b.name))
 
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
@@ -132,7 +147,21 @@ function help() {
     if(installed && installed.length) {
         installed.map(i => {
             const mod = mods.find(m => m.remote === i.remote)
-            console.log(chalk.green`\t${mod.label.padEnd(50)}`, chalk.bold.white`${i.name.padEnd(30)}`, chalk.yellow`${i.dir.replace(installationDir, '[mods]')}`)
+            if(mod.deprecated) {
+                console.log(
+                    chalk.strikethrough.green`\t${mod.label.padEnd(40)}`,
+                    chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
+                    chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
+                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                )
+            } else {
+                console.log(
+                    chalk.green`\t${mod.label.padEnd(40)}`,
+                    chalk.bold.white`${i.name.padEnd(30)}`,
+                    chalk.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
+                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                )
+            }
         })
     } else {
         console.log(chalk.red`\tNo mods!`)
@@ -143,17 +172,29 @@ function help() {
 
     mods.sort((a, b) => a.name.localeCompare(b.name)).map(mod => {
         if(!isInstalledMod(mod.remote)) {
-            console.log(chalk.green`\t${mod.label.padEnd(50)}`, chalk.bold.white`${mod.name.padEnd(30)}`, chalk.yellow`${mod.remote}`)
+            if(mod.deprecated) {
+                console.log(
+                    chalk.strikethrough.green`\t${mod.label.padEnd(40)}`,
+                    chalk.strikethrough.bold.white`${mod.name.padEnd(30)}`,
+                    chalk.strikethrough.yellow`${mod.remote.padEnd(70)}`,
+                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                )
+            } else {
+                console.log(
+                    chalk.green`\t${mod.label.padEnd(40)}`,
+                    chalk.bold.white`${mod.name.padEnd(30)}`,
+                    chalk.yellow`${mod.remote.padEnd(70)}`,
+                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                )
+            }
         }
     })
     console.log(chalk.green`\n\n\ti.e.`, chalk.bold.white`$ rimworld-lazy-installer install rjw-ex\n`)
 }
 
 function install(mod) {
-    const installationDir = program.opts().dir || cwd()
+    const installationDir = modInstallationDir(program.opts())
     const m = mods.find(m => m.name === mod)
-
-    console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     
     if(!m) {
         console.log(chalk.red`Mod ${mod} is not a known mod and cannot be installed`)
@@ -197,6 +238,7 @@ function update(opts) {
             const repo = GitRepo(mod.dir)
             const current = await repo.revparse('HEAD')
             const status = await repo.fetch().pull().revparse('HEAD')
+            const installedMod = mods.find(m => m.name == mod.name)
 
             let log = []
             if(showChangeLog || (showOnlyUpdatedChangeLog && current !== status)) {
@@ -205,9 +247,9 @@ function update(opts) {
             }
             
             if(current === status) {
-                console.log(chalk.green`- Checked`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${status.substring(0, 6)}]`)
+                console.log(chalk.green`- Checked`, chalk.white`${installedMod.label.padEnd(60)}`, chalk.yellow`[${status.substring(0, 6)}]`)
             } else {
-                console.log(chalk.green`- Updated`, chalk.white`${mod.name.padEnd(30)}`, chalk.yellow`[${current.substring(0, 6)} -> ${status.substring(0, 6)}]`)
+                console.log(chalk.green`- Updated`, chalk.white`${installedMod.label.padEnd(60)}`, chalk.yellow`[${current.substring(0, 6)} -> ${status.substring(0, 6)}]`)
             }
             log.map(line => console.log(chalk.white`${line}`))
 
@@ -224,8 +266,6 @@ function update(opts) {
 function uninstall(mod) {
     const m = mods.find(m => m.name === mod)
 
-    console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
-    
     if(!m) {
         console.log(chalk.red`Mod ${mod} is not a known mod and cannot be uninstalled`)
     } else if(!isInstalledMod(m.remote)) {

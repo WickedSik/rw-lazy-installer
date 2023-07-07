@@ -12,12 +12,9 @@
     {
         "label": "RJW Race Support",
         "name": "rjw-race-support",
-        "remote": "https://gitgud.io/Abraxas/rjw-race-support.git"
-    },
-    {
-        "label": "RJW MC",
-        "name": "rjw-mc",
-        "remote": "https://gitgud.io/Ed86/rjw-mc.git"
+        "remote": "https://gitgud.io/Abraxas/rjw-race-support.git",
+        "remark": "Download via LL",
+        "deprecated": true
     },
     {
         "label": "RJW Animations",
@@ -90,9 +87,10 @@
         "remote": "https://gitgud.io/amevarashi/rjw-sexperience-ideology.git"
     },
     {
-        "label": "BetterRJW - Do not install together with RJW",
+        "label": "BetterRJW",
         "name": "betterrjw",
-        "remote": "https://gitgud.io/EaglePhntm/betterrjw.git"
+        "remote": "https://gitgud.io/EaglePhntm/betterrjw.git",
+        "remark": "Do not install together with RJW"
     },
     {
         "label": "RJW Whorebeds",
@@ -115,19 +113,22 @@
         "remote": "https://gitlab.com/Nabber/rimvore-2"
     },
     {
-        "label": "RimNude Unofficial - Do not install together with OTY Nude",
+        "label": "RimNude Unofficial",
         "name": "rimnude-unofficial",
-        "remote": "https://gitgud.io/Tory/rimnude-unofficial.git"
+        "remote": "https://gitgud.io/Tory/rimnude-unofficial.git",
+        "remark": "Do not install together with OTY Nude"
     },
     {
-        "label": "OTY Nude Unofficial - Do not install together with RimNude",
+        "label": "OTY Nude Unofficial",
         "name": "oty-nude-unofficial",
-        "remote": "https://gitgud.io/Tory/oty-nude-unofficial.git"
+        "remote": "https://gitgud.io/Tory/oty-nude-unofficial.git",
+        "remark": "Do not install together with RimNude"
     },
     {
-        "label": "RJW Pawnmorpher Support - Requires PawnMorpher",
+        "label": "RJW Pawnmorpher Support",
         "name": "rjw-pawnmorpher-support",
-        "remote": "https://gitgud.io/a-flock-of-birds/rjw-pawnmorpher-support.git"
+        "remote": "https://gitgud.io/a-flock-of-birds/rjw-pawnmorpher-support.git",
+        "remark": "Requires PawnMorpher"
     },
     {
         "label": "Humanoid Slime Girls",
