@@ -191,7 +191,7 @@ function help() {
             }
         }
     })
-    console.log(chalk.green`\n\n\ti.e.`, chalk.bold.white`$ rimworld-lazy-installer install rjw-ex\n`)
+    console.log(chalk.green`\n\n\ti.e.`, chalk.bold.white`$ rw-lazy-installer install rjw-ex\n`)
 }
 
 function install(mod) {

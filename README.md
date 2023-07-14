@@ -1,4 +1,4 @@
-# RJW Lazy Installer
+# RW Lazy Installer
 
 ## Installation
 
@@ -54,5 +54,5 @@ Installable mods:
         Rimnosis NSFW                                      Rimnosis                       https://github.com/WolfoftheWest/Rimnosis.git
 
 
-        i.e. $ rimworld-lazy-installer install rjw-ex
+        i.e. $ rw-lazy-installer install rjw-ex
 ```
