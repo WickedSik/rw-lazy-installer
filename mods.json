@@ -192,5 +192,10 @@
         "label": "Demonic Sculptures",
         "name": "demonic-sculptures",
         "remote": "https://gitgud.io/ll.mirrors/demonic-sculptures"
+    },
+    {
+        "label": "SizedApparel",
+        "name": "sized-apparel",
+        "remote": "https://gitgud.io/ll.mirrors/sized-apparel-zero"
     }
 ]
