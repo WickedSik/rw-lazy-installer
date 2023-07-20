@@ -179,5 +179,10 @@
         "label": "Carniculus",
         "name": "carniculus",
         "remote": "https://github.com/muri-desu/Carniculus.git"
+    },
+    {
+        "label": "SizedApparel",
+        "name": "sized-apparel",
+        "remote": "https://gitgud.io/ll.mirrors/sized-apparel-zero"
     }
 ]
