@@ -197,5 +197,10 @@
         "label": "SizedApparel",
         "name": "sized-apparel",
         "remote": "https://gitgud.io/ll.mirrors/sized-apparel-zero"
+    },
+    {
+        "label": "SizedApparel - Kurin HAR Patch"
+        "name": "sized-apparel-kurin-patch",
+        "remote": "https://gitgud.io/ll.mirrors/kurin-har-sized-apparel"
     }
 ]
