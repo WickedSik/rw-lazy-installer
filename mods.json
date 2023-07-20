@@ -179,5 +179,10 @@
         "label": "Carniculus",
         "name": "carniculus",
         "remote": "https://github.com/muri-desu/Carniculus.git"
+    },
+    {
+        "label": "Demonic Sculptures",
+        "name": "demonic-sculptures",
+        "remote": "https://gitgud.io/ll.mirrors/demonic-sculptures"
     }
 ]
