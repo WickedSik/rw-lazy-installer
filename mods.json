@@ -178,6 +178,13 @@
     {
         "label": "Carniculus",
         "name": "carniculus",
-        "remote": "https://github.com/muri-desu/Carniculus.git"
+        "remote": "https://github.com/muri-desu/Carniculus.git",
+        "remark": "Replaced by Carniculus 1.4",
+        "deprecated": true
+    },
+    {
+        "label": "Carniculus 1.4",
+        "name": "carniculus14",
+        "remote": "https://github.com/muri-desu/Carniculus1.4.git"
     }
 ]
