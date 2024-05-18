@@ -9,6 +9,12 @@ import Config from 'conf'
 import GitRepo from 'simple-git'
 import { program } from 'commander'
 
+async function importJson(file) {
+    return JSON.parse(await readFile(new URL(file, import.meta.url)))
+}
+
+const version = (await importJson('./package.json')).version;
+
 const INSTALLATION_DIR_CONFIG_FIELD = 'installation-dir'
 const INSTALLED_MODS_CONFIG_FIELD = 'installed-mods'
 const HEADER_ASCII_ART = `
@@ -19,12 +25,8 @@ ______ _    _   _                       _____          _        _ _
 | |\\ \\\\  /\\  / | |___| (_| |/ /| |_| |  _| || | | \\__ \\ || (_| | | |  __/ |   
 \\_| \\_|\\/  \\/  \\_____/\\__,_/___|\\__, |  \\___/_| |_|___/\\__\\__,_|_|_|\\___|_|   
                                  __/ |                                        
-                                |___/
+                                |___/                                  v${version}
 `.trim()
-
-async function importJson(file) {
-    return JSON.parse(await readFile(new URL(file, import.meta.url)))
-}
 
 const mods = await importJson('./mods.json')
 const isModRemote = (url) => {
@@ -41,7 +43,7 @@ const modInstallationDir = (opt) => {
     return (opt && opt.dir) || config.get(INSTALLATION_DIR_CONFIG_FIELD) || process.cwd()
 }
 
-program.version('1.0.0')
+program.version(version)
 program
     .option('-d, --dir <dir>', 'RimWorld Mod Directory')
 
