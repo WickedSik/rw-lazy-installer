@@ -90,7 +90,8 @@
         "label": "BetterRJW",
         "name": "betterrjw",
         "remote": "https://gitgud.io/EaglePhntm/betterrjw.git",
-        "remark": "Do not install together with RJW"
+        "remark": "Do not install together with RJW - No public git access, get elsewhere",
+        "deprecated": true
     },
     {
         "label": "RJW Whorebeds",
