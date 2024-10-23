@@ -259,5 +259,10 @@
         "name": "robotic-genitals-15",
         "remote": "https://gitgud.io/Nalzurin/robotic-genitals.git",
         "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "RJW - Genes",
+        "name": "rjw-genes",
+        "remote": "https://github.com/vegapnk/RJW-Genes.git"
     }
 ]
