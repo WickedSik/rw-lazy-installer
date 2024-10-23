@@ -7,7 +7,8 @@
     {
         "label": "RJW EX",
         "name": "rjw-ex",
-        "remote": "https://gitgud.io/Ed86/rjw-ex.git"
+        "remote": "https://gitgud.io/Ed86/rjw-ex.git",
+        "deprecated": true
     },
     {
         "label": "RJW Race Support",
@@ -59,7 +60,8 @@
     {
         "label": "RJW Events",
         "name": "rjw-events",
-        "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-events.git"
+        "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-events.git",
+        "deprecated": true
     },
     {
         "label": "SCC Lewd Sculptures",
@@ -149,7 +151,8 @@
     {
         "label": "RJW - STDs",
         "name": "rjw-std",
-        "remote": "https://gitgud.io/Ed86/rjw-std.git"
+        "remote": "https://gitgud.io/Ed86/rjw-std.git",
+        "deprecated": true
     },
     {
         "label": "RJW Whoring",
@@ -202,5 +205,59 @@
         "label": "SizedApparel - Kurin HAR Patch",
         "name": "sized-apparel-kurin-patch",
         "remote": "https://gitgud.io/ll.mirrors/kurin-har-sized-apparel"
+    },
+    {
+        "label": "Tentacle Love",
+        "name": "tentacle-love-15",
+        "remote": "https://gitgud.io/Nalzurin/tentacle-love",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "Semen Processor",
+        "name": "semen-processor-15",
+        "remote": "https://gitgud.io/Nalzurin/semen-processor",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "RJW Plastic Surgeries",
+        "name": "rjw-plastic-surgeries-15",
+        "remote": "https://gitgud.io/Nalzurin/rjw-plastic-surgeries",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "RJW STD",
+        "name": "rjw-std-15",
+        "remote": "https://gitgud.io/Nalzurin/rjw-std",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "Milking Machine",
+        "name": "milking-machine-15",
+        "remote": "https://gitgud.io/Nalzurin/milking-machine",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "RJW Dirty Talk",
+        "name": "rjw-dirty-talk-15",
+        "remote": "https://gitgud.io/Nalzurin/rjw-dirty-talk",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "RJW Events",
+        "name": "rjw-events-15",
+        "remote": "https://gitgud.io/Nalzurin/rjw-events",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "RJW Extension",
+        "name": "rjw-extension-15",
+        "remote": "https://gitgud.io/Nalzurin/rjw-extension",
+        "remark": "1.5 update by Nalzurin"
+    },
+    {
+        "label": "Robotic Genitals",
+        "name": "robotic-genitals-15",
+        "remote": "https://gitgud.io/Nalzurin/robotic-genitals",
+        "remark": "1.5 update by Nalzurin"
     }
 ]
