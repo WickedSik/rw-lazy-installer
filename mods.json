@@ -225,7 +225,7 @@
         "remark": "1.5 update by Nalzurin"
     },
     {
-        "label": "RJW STD",
+        "label": "RJW - STDs",
         "name": "rjw-std-15",
         "remote": "https://gitgud.io/Nalzurin/rjw-std",
         "remark": "1.5 update by Nalzurin"
@@ -237,19 +237,19 @@
         "remark": "1.5 update by Nalzurin"
     },
     {
-        "label": "RJW Dirty Talk",
+        "label": "RJW - Dirty Talk",
         "name": "rjw-dirty-talk-15",
         "remote": "https://gitgud.io/Nalzurin/rjw-dirty-talk",
         "remark": "1.5 update by Nalzurin"
     },
     {
-        "label": "RJW Events",
+        "label": "RJW - Events",
         "name": "rjw-events-15",
         "remote": "https://gitgud.io/Nalzurin/rjw-events",
         "remark": "1.5 update by Nalzurin"
     },
     {
-        "label": "RJW Extension",
+        "label": "RJW - Extension",
         "name": "rjw-extension-15",
         "remote": "https://gitgud.io/Nalzurin/rjw-extension",
         "remark": "1.5 update by Nalzurin"
