@@ -50,7 +50,8 @@
     {
         "label": "RJW Menstruation",
         "name": "RJW_Menstruation",
-        "remote": "https://github.com/moreoreganostodump/RJW_Menstruation.git"
+        "remote": "https://gitgud.io/lutepickle/rjw_menstruation.git",
+        "remark": "Reinstall if updating to 1.5"
     },
     {
         "label": "s16's Extension",
@@ -81,7 +82,8 @@
     {
         "label": "RJW Sexperience",
         "name": "RJW-Sexperience",
-        "remote": "https://github.com/moreoreganostodump/RJW-Sexperience.git"
+        "remote": "https://gitgud.io/amevarashi/rjw-sexperience.git",
+        "remark": "Reinstall if you're updating to 1.5"
     },
     {
         "label": "RJW Sexperience Ideology",
@@ -264,5 +266,45 @@
         "label": "RJW - Genes",
         "name": "rjw-genes",
         "remote": "https://github.com/vegapnk/RJW-Genes.git"
+    },
+    {
+        "label": "Cumpilation",
+        "name": "cumpilation",
+        "remote": "https://github.com/vegapnk/Cumpilation.git"
+    },
+    {
+        "label": "Canines Animations",
+        "name": "canines-animations",
+        "remote": "https://gitgud.io/Alpenglow305/canines-animations.git"
+    },
+    {
+        "label": "RJW - Brothel Colony",
+        "name": "rjw-brothel-colony",
+        "remote": "https://gitgud.io/CalamaBanana/rjw-brothel-colony.git"
+    },
+    {
+        "label": "RJW - Humpmaker Dryad",
+        "name": "rjw-elt-hdryad",
+        "remote": "https://gitgud.io/ElToro/rjw-elt-hdryad.git"
+    },
+    {
+        "label": "Genetic Castes",
+        "name": "genetic-castes",
+        "remote": "https://github.com/vegapnk/genetic-castes.git"
+    },
+    {
+        "label": "RJW - Traits",
+        "name": "rjw-traits",
+        "remote": "https://github.com/ArcherSaiter/RJW_Traits.git"
+    },
+    {
+        "label": "RJW - Gastronomy [Unreleased]",
+        "name": "rjw-gastronomy",
+        "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Gastronomy.git"
+    },
+    {
+        "label": "RJW - Animal Animations",
+        "name": "rjw-elt-anim",
+        "remote": "https://gitgud.io/ElToro/rjw-elt-anim.git"
     }
 ]
