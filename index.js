@@ -155,8 +155,7 @@ function help() {
                 console.log(
                     chalk.strikethrough.red`\t${'missing'.padEnd(40)}`,
                     chalk.strikethrough.bold.white`\t${i.name.padEnd(30)}`,
-                    chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
-                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                    chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`
                 )
             } else if(mod.deprecated) {
                 console.log(
