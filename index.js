@@ -151,7 +151,14 @@ function help() {
     if(installed && installed.length) {
         installed.map(i => {
             const mod = mods.find(m => m.remote === i.remote)
-            if(mod.deprecated) {
+            if(!mod) {
+                console.log(
+                    chalk.strikethrough.red`\t${'missing'.padEnd(40)}`,
+                    chalk.strikethrough.bold.white`\t${i.name.padEnd(30)}`,
+                    chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
+                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                )
+            } else if(mod.deprecated) {
                 console.log(
                     chalk.strikethrough.green`\t${mod.label.padEnd(40)}`,
                     chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
