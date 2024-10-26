@@ -149,7 +149,6 @@ function init(callback) {
                         return undefined
                     }
                 } catch(e) {
-                    console.error('>>> something failed', e)
                     return undefined
                 }
             })
