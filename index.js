@@ -3,11 +3,11 @@
 import fs from 'fs'
 import path from 'path'
 import { readFile, unlink } from 'fs/promises'
-import { cwd } from 'process'
 import chalk from 'chalk'
 import Config from 'conf'
 import GitRepo from 'simple-git'
 import { program } from 'commander'
+import { XMLParser } from 'fast-xml-parser'
 
 async function importJson(file) {
     return JSON.parse(await readFile(new URL(file, import.meta.url)))
@@ -35,6 +35,28 @@ const isModRemote = (url) => {
 const isInstalledMod = (remote) => {
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
     return typeof(installed) === 'undefined' ? false : installed.filter(i => i.remote === remote).length > 0
+}
+const modSupportedVersions = (modDir) => {
+    return new Promise((resolve, reject) => {
+        const parser = new XMLParser();
+        fs.readFile(`${modDir}/About/About.xml`, (err, data) => {
+            if(err) {
+                reject(err)
+            } else {
+                const aboutInfo = parser.parse(data)
+                const versions = aboutInfo.ModMetaData.supportedVersions.li
+                resolve(Array.isArray(versions) ? versions : [versions])
+            }
+        })    
+    })
+}
+const formatVersionRange = (versions) => {
+    versions.sort()
+    if(versions.length <= 2) {
+        return versions.join(', ')
+    } else {
+        return `${versions[0]}-${versions[versions.length-1]}`
+    }
 }
 
 const config = new Config({ projectName: 'rimworld-lazy-installer' })
@@ -104,6 +126,7 @@ function init(callback) {
                     await repo.fetch()
                     const remotes = await repo.getRemotes(true)
                     const fetch = remotes[0].refs.fetch
+                    const versions = await modSupportedVersions(dir)
 
                     if(isModRemote(fetch)) {                        
                         const mod = mods.find(m => m.remote === fetch)
@@ -113,26 +136,28 @@ function init(callback) {
                         } else {
                             console.log(chalk.green`\tAdding`, chalk.white`${mod.name}`, chalk.green`as new mod`)
                         }
-                        
+
                         return {
                             name: file,
                             mod: mod.name,
                             dir,
-                            remote: remotes[0].refs.fetch
+                            remote: remotes[0].refs.fetch,
+                            versions: versions
                         }
                     } else {
                         console.log(chalk.red`\tFound`, chalk.white`${file}`, chalk.red`as unknown remote:`, chalk.yellow`${fetch}`)
                         return undefined
                     }
                 } catch(e) {
+                    console.error('>>> something failed', e)
                     return undefined
                 }
             })
         
-        Promise.all(x).then(entry => {
+        Promise.all(x).then(async entry => {
             console.log(chalk.green`\n`)
 
-            console.log(chalk.green`Saving installation dir and installed mods to config\n`)
+            console.log(chalk.green`Saving installation dir and ${entry.filter(e => e).length} installed mods to config\n`)
             config.set(INSTALLATION_DIR_CONFIG_FIELD, installationDir)
             config.set(INSTALLED_MODS_CONFIG_FIELD, entry.filter(e => e))
         }).finally(() => {
@@ -154,13 +179,15 @@ function help() {
             if(!mod) {
                 console.log(
                     chalk.strikethrough.red`\t${'missing'.padEnd(40)}`,
-                    chalk.strikethrough.bold.white`\t${i.name.padEnd(30)}`,
+                    chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
+                    chalk.strikethrough.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
                     chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`
                 )
             } else if(mod.deprecated) {
                 console.log(
                     chalk.strikethrough.green`\t${mod.label.padEnd(40)}`,
                     chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
+                    chalk.strikethrough.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
                     chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
                     mod.remark ? chalk.gray` - ${mod.remark}` : ''
                 )
@@ -168,6 +195,7 @@ function help() {
                 console.log(
                     chalk.green`\t${mod.label.padEnd(40)}`,
                     chalk.bold.white`${i.name.padEnd(30)}`,
+                    chalk.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
                     chalk.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
                     mod.remark ? chalk.gray` - ${mod.remark}` : ''
                 )
