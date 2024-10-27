@@ -95,9 +95,9 @@ program
     })
 
 program
-    .command('help', { isDefault: true })
+    .command('list', { isDefault: true })
     .description('A little overview of what this does')
-    .action(help)
+    .action(list)
 
 program
     .command('check')
@@ -165,7 +165,7 @@ function init(callback) {
     })
 }
 
-function help() {
+function list() {
     const installationDir = modInstallationDir(program.opts())
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD).sort((a, b) => a.name.localeCompare(b.name))
 

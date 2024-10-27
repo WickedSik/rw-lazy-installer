@@ -76,6 +76,12 @@
     "remote": "https://gitgud.io/John-the-Anabaptist/licentia-labs.git"
   },
   {
+    "label": "Licentia Labs Stretching",
+    "name": "licentia-labs-stretching",
+    "remote": "https://gitgud.io/ElToro/licentia-labs-stretching.git",
+    "remark": "RJW 5.5+ fork of Licentia Labs, incompatible with original mod"
+  },
+  {
     "label": "Milking Machine",
     "name": "milking-machine-15",
     "remote": "https://gitgud.io/Nalzurin/milking-machine.git",
@@ -194,6 +200,11 @@
     "remote": "https://gitgud.io/Ed86/rjw-mc.git"
   },
   {
+    "label": "RJW - Onahole Extension",
+    "name": "rjw-onahole-extension",
+    "remote": "https://gitgud.io/splicing3089/rimjobworld-onahole-extension.git"
+  },
+  {
     "label": "RJW - OrassanEgg",
     "name": "rjw-orassanegg",
     "remote": "https://gitgud.io/Ed86/rjw-orassanegg.git"
@@ -285,6 +296,12 @@
     "name": "semen-processor-15",
     "remote": "https://gitgud.io/Nalzurin/semen-processor.git",
     "remark": "1.5 update by Nalzurin"
+  },
+  {
+    "label": "Sex Cult Essentials",
+    "name": "sex-cult-essentials",
+    "remote": "https://gitgud.io/Tittydragon/sex-cult-essentials.git",
+    "remark": "Not yet compatible with Sexperience Ideology due to the content overlap"
   },
   {
     "label": "SizedApparel",
