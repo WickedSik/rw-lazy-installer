@@ -1,12 +1,12 @@
 [
   {
-    "label": "RJW Sexperience",
+    "label": "RJW - Sexperience",
     "name": "RJW-Sexperience",
     "remote": "https://gitgud.io/amevarashi/rjw-sexperience.git",
     "remark": "Reinstall if you're updating to 1.5"
   },
   {
-    "label": "Rjw Menstruation",
+    "label": "RJW - Menstruation",
     "name": "rjw_menstruation",
     "remote": "https://gitgud.io/lutepickle/rjw_menstruation.git",
     "remark": "Reinstall if updating to 1.5"
@@ -119,24 +119,24 @@
     "remote": "https://gitlab.com/Nabber/rimvore-2"
   },
   {
-    "label": "Rjw",
+    "label": "RJW",
     "name": "rjw",
     "remote": "https://gitgud.io/Ed86/rjw.git",
     "remark": "Root"
   },
   {
-    "label": "RJW Whorebeds",
+    "label": "RJW - Whorebeds",
     "name": "rjw-Whorebeds",
     "remote": "https://gitgud.io/Ed86/rjw-whorebeds.git"
   },
   {
-    "label": "Rjw Brothel Colony",
+    "label": "RJW - Brothel Colony",
     "name": "rjw-brothel-colony",
     "remote": "https://gitgud.io/CalamaBanana/rjw-brothel-colony.git",
     "remark": "Extra"
   },
   {
-    "label": "Rjw Cum",
+    "label": "RJW - Cum",
     "name": "rjw-cum",
     "remote": "https://gitgud.io/Ed86/rjw-cum.git",
     "remark": "Extra"
@@ -148,13 +148,13 @@
     "remark": "1.5 update by Nalzurin"
   },
   {
-    "label": "Rjw Elt Anim",
+    "label": "RJW - Elt Anim",
     "name": "rjw-elt-anim",
     "remote": "https://gitgud.io/ElToro/rjw-elt-anim.git",
     "remark": "Animations"
   },
   {
-    "label": "Rjw Elt Hdryad",
+    "label": "RJW - Elt Hdryad",
     "name": "rjw-elt-hdryad",
     "remote": "https://gitgud.io/ElToro/rjw-elt-hdryad.git",
     "remark": "Resources"
@@ -166,7 +166,7 @@
     "deprecated": true
   },
   {
-    "label": "Rjw Events",
+    "label": "RJW - Events (1.5)",
     "name": "rjw-events",
     "remote": "https://gitgud.io/Nalzurin/rjw-events.git",
     "remark": "1.5 update by Nalzurin"
@@ -178,25 +178,25 @@
     "deprecated": true
   },
   {
-    "label": "Rjw Ex",
+    "label": "RJW - Ex",
     "name": "rjw-ex",
     "remote": "https://gitgud.io/Nalzurin/rjw-extension.git",
     "remark": "1.5 update by Nalzurin"
   },
   {
-    "label": "Rjw Fb",
+    "label": "RJW - Fb",
     "name": "rjw-fb",
     "remote": "https://gitgud.io/Ed86/rjw-fb.git",
     "remark": "Extra"
   },
   {
-    "label": "Rjw Unleashed Gastronomy",
+    "label": "RJW Unleashed - Gastronomy",
     "name": "rjw-unleashed-gastronomy",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Gastronomy.git",
     "remark": "Resources"
   },
   {
-    "label": "Rjw Genes",
+    "label": "RJW - Genes",
     "name": "rjw-genes",
     "remote": "https://github.com/vegapnk/RJW-Genes.git",
     "remark": "Biotech"
@@ -218,7 +218,7 @@
     "remark": "Extra"
   },
   {
-    "label": "Rjw Orassanegg",
+    "label": "RJW - Orassanegg",
     "name": "rjw-orassanegg",
     "remote": "https://gitgud.io/Ed86/rjw-orassanegg.git",
     "remark": "Extra"
@@ -230,7 +230,7 @@
     "remark": "Requires PawnMorpher"
   },
   {
-    "label": "Rjw Plastic Surgeries",
+    "label": "RJW - Plastic Surgeries",
     "name": "rjw-plastic-surgeries",
     "remote": "https://gitgud.io/Nalzurin/rjw-plastic-surgeries.git",
     "remark": "1.5 update by Nalzurin"
@@ -259,8 +259,8 @@
     "deprecated": true
   },
   {
-    "label": "Rjw Std",
-    "name": "rjw-std",
+    "label": "RJW - STDs (1.5)",
+    "name": "rjw-std-15",
     "remote": "https://gitgud.io/Nalzurin/rjw-std.git",
     "remark": "1.5 update by Nalzurin"
   },
@@ -270,13 +270,13 @@
     "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-toys-and-masturbation.git"
   },
   {
-    "label": "Rjw Traits",
+    "label": "RJW - Traits",
     "name": "rjw-traits",
     "remote": "https://github.com/ArcherSaiter/RJW_Traits.git",
     "remark": "Extra"
   },
   {
-    "label": "Rjw Whoring",
+    "label": "RJW - Whoring",
     "name": "rjw-whoring",
     "remote": "https://gitgud.io/Ed86/rjw-whoring.git",
     "remark": "Extra"
@@ -320,13 +320,13 @@
     "remark": "Not yet compatible with Sexperience Ideology due to the content overlap"
   },
   {
-    "label": "Sized Apparel Zero",
+    "label": "Sized Apparel - Zero",
     "name": "sized-apparel-zero",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-zero.git",
     "remark": "Bodies"
   },
   {
-    "label": "SizedApparel - Kurin HAR Patch",
+    "label": "Sized Apparel - Kurin HAR Patch",
     "name": "sized-apparel-kurin-patch",
     "remote": "https://gitgud.io/ll.mirrors/kurin-har-sized-apparel.git"
   },
@@ -343,55 +343,55 @@
   },
   {
     "name": "gendersupremacy",
-    "label": "Gendersupremacy",
+    "label": "Gender Supremacy",
     "remote": "https://gitgud.io/MimiNil/gendersupremacy.git",
     "remark": "Ideology"
   },
   {
     "name": "rjw-ve-patches",
-    "label": "Rjw Ve Patches",
+    "label": "RJW - VE Patches",
     "remote": "https://gitgud.io/MimiNil/rjw-ve-patches.git",
     "remark": "Ideology"
   },
   {
     "name": "rjw-unleashed-tribal",
-    "label": "Rjw Unleashed Tribal",
+    "label": "RJW Unleashed - Tribal",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Tribal.git",
     "remark": "Biotech"
   },
   {
     "name": "rjw-unleashed-bastard",
-    "label": "Rjw Unleashed Bastard",
+    "label": "RJW Unleashed - Bastard",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Bastard.git",
     "remark": "Biotech"
   },
   {
     "name": "biotech-pregnancy-rjw-fix",
-    "label": "Biotech Pregnancy Rjw Fix",
+    "label": "Biotech Pregnancy RJW Fix",
     "remote": "https://gitgud.io/Akiya82/biotech-pregnancy-rjw-fix.git",
     "remark": "Biotech"
   },
   {
     "name": "insectsjellypatch",
-    "label": "Insectsjellypatch",
+    "label": "Insects jelly patch",
     "remote": "https://gitgud.io/MimiNil/insectsjellypatch.git",
     "remark": "Biotech"
   },
   {
     "name": "rjw-unleashed-framework",
-    "label": "Rjw Unleashed Framework",
+    "label": "RJW Unleashed - Framework",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Framework.git",
     "remark": "Extra"
   },
   {
     "name": "rjw-menstruation-resources",
-    "label": "Rjw Menstruation Resources",
+    "label": "RJW - Menstruation Resources",
     "remote": "https://gitgud.io/ElToro/rjw-menstruation-resources.git",
     "remark": "Extra"
   },
   {
     "name": "rjw-menstruation-fluids",
-    "label": "Rjw Menstruation Fluids",
+    "label": "RJW - Menstruation Fluids",
     "remote": "https://gitgud.io/ElToro/rjw-menstruation-fluids.git",
     "remark": "Extra"
   },
@@ -445,13 +445,13 @@
   },
   {
     "name": "nilmasochistscantrebel",
-    "label": "Nilmasochistscantrebel",
+    "label": "Nil Masochists cant rebel",
     "remote": "https://gitgud.io/MimiNil/nilmasochistscantrebel.git",
     "remark": "Extra"
   },
   {
     "name": "rjw-milkable-colonists-biotech",
-    "label": "Rjw Milkable Colonists Biotech",
+    "label": "RJW - Milkable Colonists Biotech",
     "remote": "https://gitgud.io/sombrahide/rjw-milkable-colonists-biotech.git",
     "remark": "Extra"
   },
@@ -463,19 +463,19 @@
   },
   {
     "name": "rjw-fc",
-    "label": "Rjw Fc",
+    "label": "RJW - Fc",
     "remote": "https://gitgud.io/Ed86/rjw-fc.git",
     "remark": "Extra"
   },
   {
     "name": "rjw-fh",
-    "label": "Rjw Fh",
+    "label": "RJW - Fh",
     "remote": "https://gitgud.io/Ed86/rjw-fh.git",
     "remark": "Extra"
   },
   {
     "name": "rjw-cocoon",
-    "label": "Rjw Cocoon",
+    "label": "RJW - Cocoon",
     "remote": "https://gitgud.io/ll.mirrors/rjw-cocoon.git",
     "remark": "Extra"
   },
@@ -541,31 +541,31 @@
   },
   {
     "name": "sized-apparel-heads",
-    "label": "Sized Apparel Heads",
+    "label": "Sized Apparel - Heads",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-heads.git",
     "remark": "Bodies"
   },
   {
     "name": "sized-apparel-extended",
-    "label": "Sized Apparel Extended",
+    "label": "Sized Apparel - Extended",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-extended.git",
     "remark": "Bodies"
   },
   {
     "name": "underwhere-sized-apparel",
-    "label": "Underwhere Sized Apparel",
+    "label": "Sized Apparel - Underwhere",
     "remote": "https://gitgud.io/ll.mirrors/underwhere-sized-apparel.git",
     "remark": "Bodies"
   },
   {
     "name": "sized-apparel-races-milira",
-    "label": "Sized Apparel Races Milira",
+    "label": "Sized Apparel - Races Milira",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-races-milira.git",
     "remark": "Bodies"
   },
   {
     "name": "sized-apparel-alien-textures",
-    "label": "Sized Apparel Alien Textures",
+    "label": "Sized Apparel - Alien Textures",
     "remote": "https://gitgud.io/NyaamZ/sizedapparel-alien-textures.git",
     "remark": "Bodies"
   },
@@ -595,7 +595,7 @@
   },
   {
     "name": "rjw-onahofairy",
-    "label": "Rjw Onahofairy",
+    "label": "RJW - Onahofairy",
     "remote": "https://gitgud.io/aoinasuko/rjw_onahofairy.git",
     "remark": "Races"
   },
@@ -606,14 +606,14 @@
     "remark": "Races"
   },
   {
-    "name": "rjw-race-support",
-    "label": "Rjw Race Support",
+    "name": "rjw-race-support-15",
+    "label": "RJW - Race Support",
     "remote": "https://gitgud.io/WinterKein/rjw-race-support.git",
     "remark": "Races"
   },
   {
     "name": "rjw-extra-patchs",
-    "label": "Rjw Extra Patchs",
+    "label": "RJW - Extra Patches",
     "remote": "https://gitgud.io/RobTheRobotGuard/rjw-extra-patchs.git",
     "remark": "Races"
   },
@@ -637,7 +637,7 @@
   },
   {
     "name": "hc-animalreskins-complete-2-for-canines-animations",
-    "label": "Hc Animalreskins Complete 2 For Canines Animations",
+    "label": "HC Animalreskins Complete 2 For Canines Animations",
     "remote": "https://gitgud.io/Alpenglow305/h.c-animalreskins-complete-2-for-canines-animations.git",
     "remark": "Animations"
   },
@@ -649,19 +649,19 @@
   },
   {
     "name": "rjw-sexpanded-core",
-    "label": "Rjw Sexpanded Core",
+    "label": "RJW Sexpanded - Core",
     "remote": "https://gitgud.io/KiraBadArtist/rjw-sexpanded-core.git",
     "remark": "Resources"
   },
   {
     "name": "rjw-sexpanded-reproduction",
-    "label": "Rjw Sexpanded Reproduction",
+    "label": "RJW Sexpanded - Reproduction",
     "remote": "https://gitgud.io/KiraBadArtist/rjw-sexpanded-reproduction.git",
     "remark": "Resources"
   },
   {
     "name": "rjw-ero-trader",
-    "label": "Rjw Ero Trader",
+    "label": "RJW - Ero Trader",
     "remote": "https://gitgud.io/Nalzurin/rjw-ero-trader.git",
     "remark": "Resources"
   },
@@ -673,61 +673,61 @@
   },
   {
     "name": "rimvore-2-overstuffed",
-    "label": "Rimvore 2 Overstuffed",
+    "label": "Rimvore 2 - Overstuffed",
     "remote": "https://gitlab.com/MamaHorseteeth/rimvore-2-overstuffed.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-carnivorousplants",
-    "label": "Rimvore 2 Carnivorousplants",
+    "label": "Rimvore 2 - Carnivorousplants",
     "remote": "https://gitlab.com/Nabber/carnivorousplants.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-reformers",
-    "label": "Rimvore 2 Reformers",
+    "label": "Rimvore 2 - Reformers",
     "remote": "https://gitlab.com/whatif12stuff/rv2reformers.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-interactions",
-    "label": "Rimvore 2 Interactions",
+    "label": "Rimvore 2 - Interactions",
     "remote": "https://gitlab.com/whatif12/rutrix-interactions-continued.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-misc",
-    "label": "Rimvore 2 Misc",
+    "label": "Rimvore 2 - Misc",
     "remote": "https://gitlab.com/whatif12/rutrix-misc-continued.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-product-texture",
-    "label": "Rimvore 2 Product Texture",
+    "label": "Rimvore 2 - Product Texture",
     "remote": "https://gitlab.com/Amecissist7/rimvore-product-texture.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-cumslimes",
-    "label": "Rimvore 2 Cumslimes",
+    "label": "Rimvore 2 - Cumslimes",
     "remote": "https://gitlab.com/Nabber/cumslimes.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-cumslimesarepeopletoo",
-    "label": "Rimvore 2 Cumslimesarepeopletoo",
+    "label": "Rimvore 2 - Cumslimesarepeopletoo",
     "remote": "https://gitlab.com/Nabber/cumslimesarepeopletoo.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-ediblescat",
-    "label": "Rimvore 2 Ediblescat",
+    "label": "Rimvore 2 - Ediblescat",
     "remote": "https://gitlab.com/misplacedtf/RimVore2scat.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-drinkablepiss",
-    "label": "Rimvore 2 Drinkablepiss",
+    "label": "Rimvore 2 - Drinkablepiss",
     "remote": "https://gitlab.com/misplacedtf/rimvore2piss.git",
     "remark": "Vore"
   },
