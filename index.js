@@ -34,7 +34,7 @@ const isModRemote = (url) => {
 }
 const isInstalledMod = (remote) => {
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD)
-    return typeof(installed) === 'undefined' ? false : installed.filter(i => i.remote === remote).length > 0
+    return typeof(installed) === 'undefined' ? false : installed.filter(i => i.remote.replace('.git', '') === remote.replace('.git', '')).length > 0
 }
 const modSupportedVersions = (modDir) => {
     return new Promise((resolve, reject) => {
@@ -98,6 +98,11 @@ program
     .command('list', { isDefault: true })
     .description('A little overview of what this does')
     .action(list)
+
+program
+    .command('search <term>')
+    .description('Search within the list')
+    .action(search)
 
 program
     .command('check')
@@ -166,13 +171,17 @@ function init(callback) {
 }
 
 function list() {
+    search(undefined)
+}
+
+function search(term) {
     const installationDir = modInstallationDir(program.opts())
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD).sort((a, b) => a.name.localeCompare(b.name))
 
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     console.log(chalk.green`You have installed:\n`)
 
-    if(installed && installed.length) {
+    if(!term && installed && installed.length) {
         installed.map(i => {
             const mod = mods.find(m => m.remote === i.remote)
             if(!mod) {
@@ -200,26 +209,30 @@ function list() {
                 )
             }
         })
-    } else {
+    } else if(!term) {
         console.log(chalk.red`\tNo mods!`)
     }
 
     console.log(chalk.green`\nInstall or update the mods with the ${chalk.bold.white`install`} or ${chalk.bold.white`update`} command.\n`)
     console.log(chalk.green`\nInstallable mods:\n\n`)
 
-    mods.sort((a, b) => a.name.localeCompare(b.name)).map(mod => {
+    const filteredMods = term ? mods.filter(m => m.name.toLowerCase().indexOf(term.toLowerCase()) > -1) : mods
+    const longestName = filteredMods.map(m => m.name.length).reduce((p, c = 30) => Math.max(p ,c))
+    const longestLabel = filteredMods.map(m => m.label.length).reduce((p, c = 40) => Math.max(p ,c))
+
+    filteredMods.sort((a, b) => a.name.localeCompare(b.name)).map(mod => {
         if(!isInstalledMod(mod.remote)) {
             if(mod.deprecated) {
                 console.log(
-                    chalk.strikethrough.green`\t${mod.label.padEnd(40)}`,
-                    chalk.strikethrough.bold.white`${mod.name.padEnd(30)}`,
+                    chalk.strikethrough.green`\t${mod.label.padEnd(longestLabel)}`,
+                    chalk.strikethrough.bold.white`${mod.name.padEnd(longestName)}`,
                     chalk.strikethrough.yellow`${mod.remote.padEnd(70)}`,
                     mod.remark ? chalk.gray` - ${mod.remark}` : ''
                 )
             } else {
                 console.log(
-                    chalk.green`\t${mod.label.padEnd(40)}`,
-                    chalk.bold.white`${mod.name.padEnd(30)}`,
+                    chalk.green`\t${mod.label.padEnd(longestLabel)}`,
+                    chalk.bold.white`${mod.name.padEnd(longestName)}`,
                     chalk.yellow`${mod.remote.padEnd(70)}`,
                     mod.remark ? chalk.gray` - ${mod.remark}` : ''
                 )
