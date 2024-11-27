@@ -12,6 +12,7 @@
         "simple-git": "^3.24.0"
     },
     "bin": {
-        "rw-lazy-installer": "index.js"
+        "rw-lazy-installer": "index.js",
+        "rw-update-masterlist": "update-masterlist.js"
     }
 }
