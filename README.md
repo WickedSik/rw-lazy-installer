@@ -7,6 +7,7 @@
 ## Commands:
 
 - `rw-lazy-installer list` Shows installed and installable mods
+- `rw-lazy-installer search <term>` Searches within not installed mods for `<term>`
 - `rw-lazy-installer check [--dir <mod dir>]` Checks for existing repositories in the mod dir
 - `rw-lazy-installer install <mod> [--dir <mod dir>]` Installs a mod or sub mod in the mod dir
 - `rw-lazy-installer update [-l|--log] [-r|--relevant] [--dir <mod dir>]` Updates all installed (and known) mods in the mod dir, showing the git log (last 5) when updating (`--relevant`) or always (`--log`)
