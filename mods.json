@@ -202,6 +202,12 @@
     "remark": "Biotech"
   },
   {
+    "label": "RJW - Genes - Spawn Genes",
+    "name": "rjw-spawn-genes",
+    "remote": "https://gitgud.io/Akiya82/spawn-rjw-genes.git",
+    "remarkt": "Requires [BT] SpawnThoseGenes! https://steamcommunity.com/sharedfiles/filedetails/?id=2898044088"
+  },
+  {
     "label": "RJW - Interaction Addon",
     "name": "rjw-ia",
     "remote": "https://gitgud.io/Ed86/rjw-ia.git"
@@ -592,6 +598,11 @@
     "label": "Multiple Races Sar Patch",
     "remote": "https://github.com/Ryufais/multiple-races-SAR-patch.git",
     "remark": "Races"
+  },
+  {
+    "name": "multipe-orgasms",
+    "label": "Multiple Orgasms",
+    "remote": "https://github.com/vegapnk/MultipleOrgasms.git"
   },
   {
     "name": "rjw-onahofairy",
