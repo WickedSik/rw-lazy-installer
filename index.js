@@ -181,8 +181,10 @@ function search(term) {
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
     console.log(chalk.green`You have installed:\n`)
 
-    if(!term && installed && installed.length) {
-        installed.map(i => {
+    const filteredInstalledMods = term ? installed.filter(m => m.name.toLowerCase().indexOf(term.toLowerCase()) > -1) : installed
+
+    if(filteredInstalledMods && filteredInstalledMods.length) {
+        filteredInstalledMods.map(i => {
             const mod = mods.find(m => m.remote === i.remote)
             if(!mod) {
                 console.log(
@@ -210,7 +212,9 @@ function search(term) {
             }
         })
     } else if(!term) {
-        console.log(chalk.red`\tNo mods!`)
+        console.log(chalk.red`\tNo mods found!`)
+    } else {
+        console.log(chalk.red`\tNo mods found for "${term}"!`)
     }
 
     console.log(chalk.green`\nInstall or update the mods with the ${chalk.bold.white`install`} or ${chalk.bold.white`update`} command.\n`)
@@ -288,7 +292,7 @@ function update(opts) {
             const repo = GitRepo(mod.dir)
             const current = await repo.revparse('HEAD')
             const status = await repo.fetch().pull().revparse('HEAD')
-            const installedMod = mods.find(m => m.name == mod.name)
+            const installedMod = mods.find(m => m.remote == mod.remote)
 
             let log = []
             if(showChangeLog || (showOnlyUpdatedChangeLog && current !== status)) {
