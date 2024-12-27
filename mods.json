@@ -205,7 +205,7 @@
     "label": "RJW - Genes - Spawn Genes",
     "name": "rjw-spawn-genes",
     "remote": "https://gitgud.io/Akiya82/spawn-rjw-genes.git",
-    "remarkt": "Requires [BT] SpawnThoseGenes! https://steamcommunity.com/sharedfiles/filedetails/?id=2898044088"
+    "remark": "Requires [BT] SpawnThoseGenes! https://steamcommunity.com/sharedfiles/filedetails/?id=2898044088"
   },
   {
     "label": "RJW - Interaction Addon",
@@ -469,13 +469,13 @@
   },
   {
     "name": "rjw-fc",
-    "label": "RJW - Fc",
+    "label": "RJW - FC",
     "remote": "https://gitgud.io/Ed86/rjw-fc.git",
     "remark": "Extra"
   },
   {
     "name": "rjw-fh",
-    "label": "RJW - Fh",
+    "label": "RJW - FH",
     "remote": "https://gitgud.io/Ed86/rjw-fh.git",
     "remark": "Extra"
   },
@@ -600,9 +600,10 @@
     "remark": "Races"
   },
   {
-    "name": "multipe-orgasms",
+    "name": "multiple-orgasms",
     "label": "Multiple Orgasms",
-    "remote": "https://github.com/vegapnk/MultipleOrgasms.git"
+    "remote": "https://github.com/vegapnk/MultipleOrgasms.git",
+    "remark": "Extra"
   },
   {
     "name": "rjw-onahofairy",
@@ -630,7 +631,7 @@
   },
   {
     "name": "rjwanimaddons-sextra2",
-    "label": "RJWAnimAddons SeXtra2",
+    "label": "RJWAnimAddons - SeXtra2",
     "remote": "https://gitgud.io/Tory/rjwanimaddons-sextra2.git",
     "remark": "Animations"
   },
@@ -726,19 +727,19 @@
   },
   {
     "name": "rimvore-2-cumslimesarepeopletoo",
-    "label": "Rimvore 2 - Cumslimesarepeopletoo",
+    "label": "Rimvore 2 - Cumslimes are people too",
     "remote": "https://gitlab.com/Nabber/cumslimesarepeopletoo.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-ediblescat",
-    "label": "Rimvore 2 - Ediblescat",
+    "label": "Rimvore 2 - Edible Scat",
     "remote": "https://gitlab.com/misplacedtf/RimVore2scat.git",
     "remark": "Vore"
   },
   {
     "name": "rimvore-2-drinkablepiss",
-    "label": "Rimvore 2 - Drinkablepiss",
+    "label": "Rimvore 2 - Drinkable Piss",
     "remote": "https://gitlab.com/misplacedtf/rimvore2piss.git",
     "remark": "Vore"
   },
@@ -753,5 +754,23 @@
     "label": "Performance Fish",
     "remote": "https://github.com/bbradson/Performance-Fish.git",
     "remark": "Performance"
+  },
+  {
+    "name": "rjw-brothel-colony-quest-patch",
+    "label": "RJW - Brothel Colony - Quest Patch",
+    "remote": "https://gitgud.io/aoinasuko/rjw-brothel-colony-quest-patch.git",
+    "remark": "Extra"
+  },
+  {
+    "name": "akt-lewd-clothes",
+    "label": "Akt Lewd Clothes",
+    "remote": "https://gitgud.io/TeH_Dav/akt-lewd-clothes.git",
+    "remark": "Bodies"
+  },
+  {
+    "name": "bep-fairy-furniture-addon-brothel-signs",
+    "label": "Bep Fairy Furniture Addon Brothel Signs",
+    "remote": "https://gitgud.io/aoinasuko/b.e.p_fairy_furniture_addon_brothel_signs.git",
+    "remark": "Races"
   }
 ]
