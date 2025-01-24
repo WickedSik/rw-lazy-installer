@@ -256,7 +256,8 @@
   {
     "label": "RJW - Sexperience Ideology",
     "name": "rjw-sexperience-ideology",
-    "remote": "https://gitgud.io/amevarashi/rjw-sexperience-ideology.git"
+    "remote": "https://gitgud.io/amevarashi/rjw-sexperience-ideology.git",
+    "remark": "Ideology"
   },
   {
     "label": "RJW - STDs",
@@ -771,6 +772,30 @@
     "name": "bep-fairy-furniture-addon-brothel-signs",
     "label": "Bep Fairy Furniture Addon Brothel Signs",
     "remote": "https://gitgud.io/aoinasuko/b.e.p_fairy_furniture_addon_brothel_signs.git",
+    "remark": "Races"
+  },
+  {
+    "name": "human-art-job",
+    "label": "Human Art Job",
+    "remote": "https://gitgud.io/dordheaven/human-art-job.git",
+    "remark": "Extra"
+  },
+  {
+    "name": "rjw-accuratinator",
+    "label": "RJW - Accuratinator",
+    "remote": "https://github.com/ShauaPuta/RJW-accuratinator.git",
+    "remark": "Extra"
+  },
+  {
+    "name": "yr-hentai-prime",
+    "label": "Yuran Hentai Prime",
+    "remote": "https://github.com/sutsutman/YR_Hentai_Prime.git",
+    "remark": "Extra"
+  },
+  {
+    "name": "xenomorphtype",
+    "label": "Alien | Rimworld",
+    "remote": "https://gitgud.io/Nighzmarquls/xenomorphtype.git",
     "remark": "Races"
   }
 ]
