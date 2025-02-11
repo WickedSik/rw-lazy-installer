@@ -97,11 +97,15 @@ program
 program
     .command('list', { isDefault: true })
     .description('A little overview of what this does')
+    .option('--no-installed', 'Do not show only installed mods')
+    .option('--no-new', 'Do not show mods that can be installed')
     .action(list)
 
 program
     .command('search <term>')
     .description('Search within the list')
+    .option('--no-installed', 'Do not show only installed mods')
+    .option('--no-new', 'Do not show mods that can be installed')
     .action(search)
 
 program
@@ -170,79 +174,89 @@ function init(callback) {
     })
 }
 
-function list() {
-    search(undefined)
+function list(opts) {
+    search(undefined, opts)
 }
 
-function search(term) {
+function search(term, opts) {
     const installationDir = modInstallationDir(program.opts())
     const installed = config.get(INSTALLED_MODS_CONFIG_FIELD).sort((a, b) => a.name.localeCompare(b.name))
 
+    const showInstalled = !!opts.installed
+    const showToInstall = !!opts.new
+
     console.log(chalk.green.bold`${HEADER_ASCII_ART}\n`)
-    console.log(chalk.green`You have installed:\n`)
 
-    const filteredInstalledMods = term ? installed.filter(m => m.name.toLowerCase().indexOf(term.toLowerCase()) > -1) : installed
+    if(showInstalled) {
+        console.log(chalk.green`You have installed:\n`)
 
-    if(filteredInstalledMods && filteredInstalledMods.length) {
-        filteredInstalledMods.map(i => {
-            const mod = mods.find(m => m.remote === i.remote)
-            if(!mod) {
-                console.log(
-                    chalk.strikethrough.red`\t${'missing'.padEnd(40)}`,
-                    chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
-                    chalk.strikethrough.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
-                    chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`
-                )
-            } else if(mod.deprecated) {
-                console.log(
-                    chalk.strikethrough.green`\t${mod.label.padEnd(40)}`,
-                    chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
-                    chalk.strikethrough.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
-                    chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
-                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
-                )
-            } else {
-                console.log(
-                    chalk.green`\t${mod.label.padEnd(40)}`,
-                    chalk.bold.white`${i.name.padEnd(30)}`,
-                    chalk.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
-                    chalk.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
-                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
-                )
-            }
-        })
-    } else if(!term) {
-        console.log(chalk.red`\tNo mods found!`)
-    } else {
-        console.log(chalk.red`\tNo mods found for "${term}"!`)
+        const filteredInstalledMods = term ? installed.filter(m => m.name.toLowerCase().indexOf(term.toLowerCase()) > -1) : installed
+
+        if(filteredInstalledMods && filteredInstalledMods.length) {
+            filteredInstalledMods.map(i => {
+                const mod = mods.find(m => m.remote === i.remote)
+                if(!mod) {
+                    console.log(
+                        chalk.strikethrough.red`\t${'missing'.padEnd(40)}`,
+                        chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
+                        chalk.strikethrough.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
+                        chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`
+                    )
+                } else if(mod.deprecated) {
+                    console.log(
+                        chalk.strikethrough.green`\t${mod.label.padEnd(40)}`,
+                        chalk.strikethrough.bold.white`${i.name.padEnd(30)}`,
+                        chalk.strikethrough.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
+                        chalk.strikethrough.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
+                        mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                    )
+                } else {
+                    console.log(
+                        chalk.green`\t${mod.label.padEnd(40)}`,
+                        chalk.bold.white`${i.name.padEnd(30)}`,
+                        chalk.bold.yellow`${formatVersionRange(i.versions || []).padEnd(20)}`,
+                        chalk.yellow`${i.dir.replace(installationDir, '[mods]').padEnd(40)}`,
+                        mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                    )
+                }
+            })
+        } else if(!term) {
+            console.log(chalk.red`\tNo mods found!`)
+        } else {
+            console.log(chalk.red`\tNo mods found for "${term}"!`)
+        }
+
+        console.log(chalk.green`\nInstall or update the mods with the ${chalk.bold.white`install`} or ${chalk.bold.white`update`} command.\n`)
     }
 
-    console.log(chalk.green`\nInstall or update the mods with the ${chalk.bold.white`install`} or ${chalk.bold.white`update`} command.\n`)
-    console.log(chalk.green`\nInstallable mods:\n\n`)
+    if(showToInstall) {
+        console.log(chalk.green`\nInstallable mods:\n\n`)
 
-    const filteredMods = term ? mods.filter(m => m.name.toLowerCase().indexOf(term.toLowerCase()) > -1) : mods
-    const longestName = filteredMods.map(m => m.name.length).reduce((p, c = 30) => Math.max(p ,c))
-    const longestLabel = filteredMods.map(m => m.label.length).reduce((p, c = 40) => Math.max(p ,c))
+        const filteredMods = term ? mods.filter(m => m.name.toLowerCase().indexOf(term.toLowerCase()) > -1) : mods
+        const longestName = filteredMods.map(m => m.name.length).reduce((p, c = 30) => Math.max(p ,c))
+        const longestLabel = filteredMods.map(m => m.label.length).reduce((p, c = 40) => Math.max(p ,c))
 
-    filteredMods.sort((a, b) => a.name.localeCompare(b.name)).map(mod => {
-        if(!isInstalledMod(mod.remote)) {
-            if(mod.deprecated) {
-                console.log(
-                    chalk.strikethrough.green`\t${mod.label.padEnd(longestLabel)}`,
-                    chalk.strikethrough.bold.white`${mod.name.padEnd(longestName)}`,
-                    chalk.strikethrough.yellow`${mod.remote.padEnd(70)}`,
-                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
-                )
-            } else {
-                console.log(
-                    chalk.green`\t${mod.label.padEnd(longestLabel)}`,
-                    chalk.bold.white`${mod.name.padEnd(longestName)}`,
-                    chalk.yellow`${mod.remote.padEnd(70)}`,
-                    mod.remark ? chalk.gray` - ${mod.remark}` : ''
-                )
+        filteredMods.sort((a, b) => a.name.localeCompare(b.name)).map(mod => {
+            if(!isInstalledMod(mod.remote)) {
+                if(mod.deprecated) {
+                    console.log(
+                        chalk.strikethrough.green`\t${mod.label.padEnd(longestLabel)}`,
+                        chalk.strikethrough.bold.white`${mod.name.padEnd(longestName)}`,
+                        chalk.strikethrough.yellow`${mod.remote.padEnd(70)}`,
+                        mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                    )
+                } else {
+                    console.log(
+                        chalk.green`\t${mod.label.padEnd(longestLabel)}`,
+                        chalk.bold.white`${mod.name.padEnd(longestName)}`,
+                        chalk.yellow`${mod.remote.padEnd(70)}`,
+                        mod.remark ? chalk.gray` - ${mod.remark}` : ''
+                    )
+                }
             }
-        }
-    })
+        })
+    }
+
     console.log(chalk.green`\n\n\ti.e.`, chalk.bold.white`$ rw-lazy-installer install rjw-ex\n`)
 }
 
