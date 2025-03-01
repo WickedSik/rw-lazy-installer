@@ -330,12 +330,13 @@
     "label": "Sized Apparel - Zero",
     "name": "sized-apparel-zero",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-zero.git",
-    "remark": "Bodies"
+    "remark": "Sized Apparel Support"
   },
   {
     "label": "Sized Apparel - Kurin HAR Patch",
     "name": "sized-apparel-kurin-patch",
-    "remote": "https://gitgud.io/ll.mirrors/kurin-har-sized-apparel.git"
+    "remote": "https://gitgud.io/ll.mirrors/kurin-har-sized-apparel.git",
+    "remark": "Sized Apparel Support"
   },
   {
     "label": "Humanoid Slime Girls",
@@ -550,31 +551,37 @@
     "name": "sized-apparel-heads",
     "label": "Sized Apparel - Heads",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-heads.git",
-    "remark": "Bodies"
+    "remark": "Sized Apparel Support"
   },
   {
     "name": "sized-apparel-extended",
     "label": "Sized Apparel - Extended",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-extended.git",
-    "remark": "Bodies"
+    "remark": "Sized Apparel Support"
   },
   {
     "name": "underwhere-sized-apparel",
     "label": "Sized Apparel - Underwhere",
     "remote": "https://gitgud.io/ll.mirrors/underwhere-sized-apparel.git",
-    "remark": "Bodies"
+    "remark": "Sized Apparel Support"
   },
   {
     "name": "sized-apparel-races-milira",
     "label": "Sized Apparel - Races Milira",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-races-milira.git",
-    "remark": "Bodies"
+    "remark": "Sized Apparel Support"
   },
   {
     "name": "sized-apparel-alien-textures",
     "label": "Sized Apparel - Alien Textures",
     "remote": "https://gitgud.io/NyaamZ/sizedapparel-alien-textures.git",
-    "remark": "Bodies"
+    "remark": "Sized Apparel Support"
+  },
+  {
+    "name": "sizedapparel-smelted-loong",
+    "label": "Sized Apparel - Smelted Looong",
+    "remote": "https://gitgud.io/Talos/sizedapparel-smelted-loong.git",
+    "remark": "Sized Apparel Support"
   },
   {
     "name": "chaerens-apparel",
@@ -596,8 +603,15 @@
   },
   {
     "name": "multiple-races-sar-patch",
-    "label": "Multiple Races Sar Patch",
+    "label": "Multiple Races SAR Patch",
     "remote": "https://github.com/Ryufais/multiple-races-SAR-patch.git",
+    "remark": "Races",
+    "deprecated": true
+  },
+  {
+    "name": "multiple-races-sa0-patch",
+    "label": "Multiple Races SAR Patch [Updated]",
+    "remote": "https://gitgud.io/Ryufais/Multiple-Races-SA0-Patch.git",
     "remark": "Races"
   },
   {
