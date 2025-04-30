@@ -160,6 +160,12 @@
     "remark": "Resources"
   },
   {
+    "label": "RJW - Elt Bestiality Addon",
+    "name": "rjw-elt-baddon",
+    "remote": "https://gitgud.io/ElToro/rjw-elt-baddon.git",
+    "remark": "Extra"
+  },
+  {
     "label": "RJW - Events",
     "name": "rjw-events",
     "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-events.git",
@@ -598,6 +604,13 @@
     "name": "multiple-races-sar-patch",
     "label": "Multiple Races Sar Patch",
     "remote": "https://github.com/Ryufais/multiple-races-SAR-patch.git",
+    "remark": "Races",
+    "deprecated": true
+  },
+  {
+    "name": "multiple-races-sar-patch-updated",
+    "label": "Multiple Races Sar Patch [Updated]",
+    "remote": "https://gitgud.io/Ryufais/Multiple-Races-SA0-Patch.git",
     "remark": "Races"
   },
   {
@@ -797,5 +810,41 @@
     "label": "Alien | Rimworld",
     "remote": "https://gitgud.io/Nighzmarquls/xenomorphtype.git",
     "remark": "Races"
+  },
+  {
+    "name": "lewd-canine-style",
+    "label": "Lewd Canine Style",
+    "remote": "https://gitgud.io/Alpenglow305/lewd-canine-style.git",
+    "remark": "Ideology"
+  },
+  {
+    "name": "nugerumons-shenanigans",
+    "label": "Nugerumons Shenanigans",
+    "remote": "https://gitgud.io/nuganee/nugerumons-shenanigans.git",
+    "remark": "Extra"
+  },
+  {
+    "name": "mustards-sexy-statue",
+    "label": "Mustards Sexy Statues",
+    "remote": "https://gitgud.io/cptyossarian/mustards_sexystatue.git",
+    "remark": "Furniture"
+  },
+  {
+    "name": "metal-horror-spread-std",
+    "label": "Metal Horror Spreads through Sex",
+    "remote": "https://gitgud.io/Nalzurin/metal-horror-spreads-through-sex.git",
+    "remark": "Anomaly"
+  },
+  {
+    "name": "euclidean-fantasy-races",
+    "label": "Euclidean Fantasy Races",
+    "remote": "https://gitgud.io/Euclidean/Fantasy-Races.git",
+    "remark": "Races"
+  },
+  {
+    "name": "rjw-sexpanded-corruption",
+    "label": "RJW - Sexpanded - Corruption",
+    "remote": "https://gitgud.io/KiraBadArtist/rjw-sexpanded-corruption.git",
+    "remark": "Extra"
   }
 ]

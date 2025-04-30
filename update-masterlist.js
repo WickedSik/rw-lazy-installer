@@ -21,14 +21,23 @@ const updateMasterlist = async (data) => {
             const matchedModIndex = rwModlist.findIndex(m => m.remote == info.url)
             if(matchedModIndex >= 0) {
                 const matchedMod = rwModlist[matchedModIndex]
-                rwModlist[matchedModIndex] = {
+                const updatedEntry = {
                     ...matchedMod,
                     name: matchedMod.name ?? info.name,
                     label: matchedMod.label ?? info.name.replace(/[-_]/g, ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()),
                     remark: matchedMod.remark || category.replace(/[-_]/g, ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
                 }
 
-                console.info(chalk.white`\t${matchedMod.label} => ${info.name} updated`)
+                const changedEntry = updatedEntry.name !== matchedMod.name ||
+                                     updatedEntry.label !== matchedMod.label ||
+                                     updatedEntry.remark !== matchedMod.remark
+
+                rwModlist[matchedModIndex] = updatedEntry
+
+                console.info(changedEntry 
+                    ? chalk.yellow`\t${matchedMod.label} => ${info.name} updated`
+                    : chalk.white`\t${matchedMod.label} => ${info.name} unchanged`
+                )
             } else {
                 rwModlist[rwModlist.length] = {
                     name: mod,
