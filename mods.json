@@ -3,29 +3,55 @@
     "label": "RJW - Sexperience",
     "name": "RJW-Sexperience",
     "remote": "https://gitgud.io/amevarashi/rjw-sexperience.git",
-    "remark": "Reinstall if you're updating to 1.5"
+    "remark": "Reinstall if you're updating to 1.5",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Menstruation",
     "name": "rjw_menstruation",
     "remote": "https://gitgud.io/lutepickle/rjw_menstruation.git",
-    "remark": "Reinstall if updating to 1.5"
+    "remark": "Reinstall if updating to 1.5",
+    "supportedVersions": [
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "Rimnosis NSFW",
     "name": "Rimnosis",
-    "remote": "https://github.com/WolfoftheWest/Rimnosis.git"
+    "remote": "https://github.com/WolfoftheWest/Rimnosis.git",
+    "supportedVersions": [
+      1.2,
+      1.3
+    ]
   },
   {
     "label": "Rimworld Animations",
     "name": "Rimworld-Animations",
     "remote": "https://gitgud.io/c0ffeeeeeeee/rimworld-animations.git",
-    "remark": "Animations"
+    "remark": "Animations",
+    "supportedVersions": [
+      1.6
+    ]
   },
   {
     "label": "AnimAddons - Voice Patch",
     "name": "animaddons-voicepatch",
-    "remote": "https://gitgud.io/Tory/animaddons-voicepatch.git"
+    "remote": "https://gitgud.io/Tory/animaddons-voicepatch.git",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "BetterRJW",
@@ -38,7 +64,10 @@
     "label": "Canines Animations",
     "name": "canines-animations",
     "remote": "https://gitgud.io/Alpenglow305/canines-animations.git",
-    "remark": "Animations"
+    "remark": "Animations",
+    "supportedVersions": [
+      1.6
+    ]
   },
   {
     "label": "Carniculus",
@@ -50,57 +79,102 @@
   {
     "label": "Carniculus 1.4",
     "name": "carniculus14",
-    "remote": "https://github.com/muri-desu/Carniculus1.4.git"
+    "remote": "https://github.com/muri-desu/Carniculus1.4.git",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "coffees RJW Ideology Addons",
     "name": "coffees-rjw-ideology-addons",
-    "remote": "https://gitgud.io/c0ffeeeeeeee/coffees-rjw-ideology-addons.git"
+    "remote": "https://gitgud.io/c0ffeeeeeeee/coffees-rjw-ideology-addons.git",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "label": "Cumpilation",
     "name": "cumpilation",
     "remote": "https://github.com/vegapnk/Cumpilation.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "Demonic Sculptures",
     "name": "demonic-sculptures",
-    "remote": "https://gitgud.io/ll.mirrors/demonic-sculptures.git"
+    "remote": "https://gitgud.io/ll.mirrors/demonic-sculptures.git",
+    "supportedVersions": [
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "Genetic Castes",
     "name": "genetic-castes",
     "remote": "https://github.com/vegapnk/genetic-castes.git",
-    "remark": "Biotech"
+    "remark": "Biotech",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "Licentia Labs",
     "name": "licentia-labs",
-    "remote": "https://gitgud.io/John-the-Anabaptist/licentia-labs.git"
+    "remote": "https://gitgud.io/John-the-Anabaptist/licentia-labs.git",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "Licentia Labs Stretching",
     "name": "licentia-labs-stretching",
     "remote": "https://gitgud.io/ElToro/licentia-labs-stretching.git",
-    "remark": "RJW 5.5+ fork of Licentia Labs, incompatible with original mod"
+    "remark": "RJW 5.5+ fork of Licentia Labs, incompatible with original mod",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "Milking Machine",
     "name": "milking-machine",
     "remote": "https://gitgud.io/Nalzurin/milking-machine.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "Nephila RJW",
     "name": "nephila-rjw",
-    "remote": "https://gitgud.io/HiveBro/nephila-rjw.git"
+    "remote": "https://gitgud.io/HiveBro/nephila-rjw.git",
+    "supportedVersions": [
+      1,
+      1.1,
+      1.1,
+      1.2
+    ]
   },
   {
     "label": "OTY Nude Unofficial",
     "name": "oty-nude-unofficial",
     "remote": "https://gitgud.io/Tory/oty-nude-unofficial.git",
-    "remark": "Do not install together with RimNude"
+    "remark": "Do not install together with RimNude",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "RimJobWorld Ideology Addon",
@@ -111,59 +185,108 @@
     "label": "RimNude Unofficial",
     "name": "rimnude-unofficial",
     "remote": "https://gitgud.io/Tory/rimnude-unofficial.git",
-    "remark": "Do not install together with OTY Nude"
+    "remark": "Do not install together with OTY Nude",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "Rimvore 2",
     "name": "rimvore-2",
-    "remote": "https://gitlab.com/Nabber/rimvore-2"
+    "remote": "https://gitlab.com/Nabber/rimvore-2",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW",
     "name": "rjw",
     "remote": "https://gitgud.io/Ed86/rjw.git",
-    "remark": "Root"
+    "remark": "Root",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Whorebeds",
     "name": "rjw-Whorebeds",
-    "remote": "https://gitgud.io/Ed86/rjw-whorebeds.git"
+    "remote": "https://gitgud.io/Ed86/rjw-whorebeds.git",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "RJW - Brothel Colony",
     "name": "rjw-brothel-colony",
     "remote": "https://gitgud.io/CalamaBanana/rjw-brothel-colony.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Cum",
     "name": "rjw-cum",
     "remote": "https://gitgud.io/Ed86/rjw-cum.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "label": "Dirty Talk",
     "name": "dirty-talk",
     "remote": "https://gitgud.io/Nalzurin/rjw-dirty-talk.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.3,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Elt Anim",
     "name": "rjw-elt-anim",
     "remote": "https://gitgud.io/ElToro/rjw-elt-anim.git",
-    "remark": "Animations"
+    "remark": "Animations",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "RJW - Elt Hdryad",
     "name": "rjw-elt-hdryad",
     "remote": "https://gitgud.io/ElToro/rjw-elt-hdryad.git",
-    "remark": "Resources"
+    "remark": "Resources",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "RJW - Elt Bestiality Addon",
     "name": "rjw-elt-baddon",
     "remote": "https://gitgud.io/ElToro/rjw-elt-baddon.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Events",
@@ -175,7 +298,15 @@
     "label": "RJW - Events (1.5)",
     "name": "rjw-events",
     "remote": "https://gitgud.io/Nalzurin/rjw-events.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Extension",
@@ -187,70 +318,130 @@
     "label": "RJW - Ex",
     "name": "rjw-ex",
     "remote": "https://gitgud.io/Nalzurin/rjw-extension.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Fb",
     "name": "rjw-fb",
     "remote": "https://gitgud.io/Ed86/rjw-fb.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "label": "RJW Unleashed - Gastronomy",
     "name": "rjw-unleashed-gastronomy",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Gastronomy.git",
-    "remark": "Resources"
+    "remark": "Resources",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Genes",
     "name": "rjw-genes",
     "remote": "https://github.com/vegapnk/RJW-Genes.git",
-    "remark": "Biotech"
+    "remark": "Biotech",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Genes - Spawn Genes",
     "name": "rjw-spawn-genes",
     "remote": "https://gitgud.io/Akiya82/spawn-rjw-genes.git",
-    "remark": "Requires [BT] SpawnThoseGenes! https://steamcommunity.com/sharedfiles/filedetails/?id=2898044088"
+    "remark": "Requires [BT] SpawnThoseGenes! https://steamcommunity.com/sharedfiles/filedetails/?id=2898044088",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "RJW - Interaction Addon",
     "name": "rjw-ia",
-    "remote": "https://gitgud.io/Ed86/rjw-ia.git"
+    "remote": "https://gitgud.io/Ed86/rjw-ia.git",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "label": "RJW - Milkable Colonists",
     "name": "rjw-mc",
-    "remote": "https://gitgud.io/Ed86/rjw-mc.git"
+    "remote": "https://gitgud.io/Ed86/rjw-mc.git",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3
+    ]
   },
   {
     "label": "Rimjobworld Onahole Extension",
     "name": "rimjobworld-onahole-extension",
     "remote": "https://gitgud.io/splicing3089/rimjobworld-onahole-extension.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Orassanegg",
     "name": "rjw-orassanegg",
     "remote": "https://gitgud.io/Ed86/rjw-orassanegg.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Pawnmorpher Support",
     "name": "rjw-pawnmorpher-support",
     "remote": "https://gitgud.io/a-flock-of-birds/rjw-pawnmorpher-support.git",
-    "remark": "Requires PawnMorpher"
+    "remark": "Requires PawnMorpher",
+    "supportedVersions": [
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "RJW - Plastic Surgeries",
     "name": "rjw-plastic-surgeries",
     "remote": "https://gitgud.io/Nalzurin/rjw-plastic-surgeries.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "label": "RJW - Pregnancy Stages Graphics",
     "name": "rjw-pregnancy-stages-graphics",
-    "remote": "https://gitgud.io/Akiya82/rjw-pregnancy-stages-graphics.git"
+    "remote": "https://gitgud.io/Akiya82/rjw-pregnancy-stages-graphics.git",
+    "supportedVersions": [
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "RJW - Race Support",
@@ -263,7 +454,13 @@
     "label": "RJW - Sexperience Ideology",
     "name": "rjw-sexperience-ideology",
     "remote": "https://gitgud.io/amevarashi/rjw-sexperience-ideology.git",
-    "remark": "Ideology"
+    "remark": "Ideology",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - STDs",
@@ -275,56 +472,102 @@
     "label": "RJW - STDs (1.5)",
     "name": "rjw-std-15",
     "remote": "https://gitgud.io/Nalzurin/rjw-std.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Toys and Animations",
     "name": "rjw-toys-and-masturbation",
-    "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-toys-and-masturbation.git"
+    "remote": "https://gitgud.io/c0ffeeeeeeee/rjw-toys-and-masturbation.git",
+    "supportedVersions": [
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "RJW - Traits",
     "name": "rjw-traits",
     "remote": "https://github.com/ArcherSaiter/RJW_Traits.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "RJW - Whoring",
     "name": "rjw-whoring",
     "remote": "https://gitgud.io/Ed86/rjw-whoring.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "label": "AnimAddons - Animal Patch",
     "name": "rjwanimaddons-animalpatch",
-    "remote": "https://gitgud.io/Tory/rjwanimaddons-animalpatch.git"
+    "remote": "https://gitgud.io/Tory/rjwanimaddons-animalpatch.git",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "AnimAddons - Xtra Anims",
     "name": "rjwanimaddons-xtraanims",
-    "remote": "https://gitgud.io/Tory/rjwanimaddons-xtraanims.git"
+    "remote": "https://gitgud.io/Tory/rjwanimaddons-xtraanims.git",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "Robotic Genitals",
     "name": "robotic-genitals",
     "remote": "https://gitgud.io/Nalzurin/robotic-genitals.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "label": "s16's Extension",
     "name": "s16s-extension",
-    "remote": "https://gitlab.com/Hazzer/s16s-extension.git"
+    "remote": "https://gitlab.com/Hazzer/s16s-extension.git",
+    "supportedVersions": [
+      1.3
+    ]
   },
   {
     "label": "SCC Lewd Sculptures",
     "name": "scc-lewd-sculptures",
-    "remote": "https://gitgud.io/SpiritCookieCake/scc-lewd-sculptures.git"
+    "remote": "https://gitgud.io/SpiritCookieCake/scc-lewd-sculptures.git",
+    "supportedVersions": [
+      1.2,
+      1.3,
+      1.4
+    ]
   },
   {
     "label": "Semen Processor",
     "name": "semen-processor",
     "remote": "https://gitgud.io/Nalzurin/semen-processor.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "Sex Cult Essentials",
@@ -336,269 +579,443 @@
     "label": "Sized Apparel - Zero",
     "name": "sized-apparel-zero",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-zero.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "label": "Sized Apparel - Kurin HAR Patch",
     "name": "sized-apparel-kurin-patch",
-    "remote": "https://gitgud.io/ll.mirrors/kurin-har-sized-apparel.git"
+    "remote": "https://gitgud.io/ll.mirrors/kurin-har-sized-apparel.git",
+    "supportedVersions": [
+      1.4
+    ]
   },
   {
     "label": "Humanoid Slime Girls",
     "name": "slime-girls",
-    "remote": "https://gitgud.io/Akiya82/slime-girls.git"
+    "remote": "https://gitgud.io/Akiya82/slime-girls.git",
+    "supportedVersions": [
+      1.4
+    ]
   },
   {
     "label": "Tentacle Love",
     "name": "tentacle-love",
     "remote": "https://gitgud.io/Nalzurin/tentacle-love.git",
-    "remark": "1.5 update by Nalzurin"
+    "remark": "1.5 update by Nalzurin",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "gendersupremacy",
     "label": "Gender Supremacy",
     "remote": "https://gitgud.io/MimiNil/gendersupremacy.git",
-    "remark": "Ideology"
+    "remark": "Ideology",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "rjw-ve-patches",
     "label": "RJW - VE Patches",
     "remote": "https://gitgud.io/MimiNil/rjw-ve-patches.git",
-    "remark": "Ideology"
+    "remark": "Ideology",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "rjw-unleashed-tribal",
     "label": "RJW Unleashed - Tribal",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Tribal.git",
-    "remark": "Biotech"
+    "remark": "Biotech",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-unleashed-bastard",
     "label": "RJW Unleashed - Bastard",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Bastard.git",
-    "remark": "Biotech"
+    "remark": "Biotech",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "biotech-pregnancy-rjw-fix",
     "label": "Biotech Pregnancy RJW Fix",
     "remote": "https://gitgud.io/Akiya82/biotech-pregnancy-rjw-fix.git",
-    "remark": "Biotech"
+    "remark": "Biotech",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "insectsjellypatch",
     "label": "Insects jelly patch",
     "remote": "https://gitgud.io/MimiNil/insectsjellypatch.git",
-    "remark": "Biotech"
+    "remark": "Biotech",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "rjw-unleashed-framework",
     "label": "RJW Unleashed - Framework",
     "remote": "https://github.com/ArcherSaiter/RJW_Unleashed_Framework.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-menstruation-resources",
     "label": "RJW - Menstruation Resources",
     "remote": "https://gitgud.io/ElToro/rjw-menstruation-resources.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-menstruation-fluids",
     "label": "RJW - Menstruation Fluids",
     "remote": "https://gitgud.io/ElToro/rjw-menstruation-fluids.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "nutritious-cum",
     "label": "Nutritious Cum",
     "remote": "https://gitgud.io/nazeeeem/nutritious-cum.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "cum-leaking",
     "label": "Cum Leaking",
     "remote": "https://gitgud.io/nazeeeem/cum-leaking.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rimjobworld-onahole-extension-defeatpatch",
     "label": "Rimjobworld Onahole Extension Defeatpatch",
     "remote": "https://gitgud.io/aoinasuko/rjw_onahole_defeatpatch.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "s16-extentions",
     "label": "S16 Extentions 1.5",
     "remote": "https://gitgud.io/IvanLepper/s16-extentions-1.5.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "dyspareunia",
     "label": "Dyspareunia",
     "remote": "https://gitlab.com/NuttySquabble/Dyspareunia.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "privacy-please",
     "label": "Privacy Please",
     "remote": "https://gitgud.io/FireSplitter/privacy-please.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "nudity-matters-more",
     "label": "Nudity Matters More",
     "remote": "https://gitgud.io/dordheaven/nudity-matters-more.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "masochist-slaves-wont-rebel",
     "label": "Masochist Slaves Wont Rebel",
     "remote": "https://gitgud.io/Akiya82/masochist-slaves-wont-rebel.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "nilmasochistscantrebel",
     "label": "Nil Masochists cant rebel",
     "remote": "https://gitgud.io/MimiNil/nilmasochistscantrebel.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rjw-milkable-colonists-biotech",
     "label": "RJW - Milkable Colonists Biotech",
     "remote": "https://gitgud.io/sombrahide/rjw-milkable-colonists-biotech.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rimworld-stripper-pole",
     "label": "Rimworld Stripper Pole",
     "remote": "https://gitgud.io/cryptidfarmer/rimworld-stripper-pole.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-fc",
     "label": "RJW - FC",
     "remote": "https://gitgud.io/Ed86/rjw-fc.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rjw-fh",
     "label": "RJW - FH",
     "remote": "https://gitgud.io/Ed86/rjw-fh.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rjw-cocoon",
     "label": "RJW - Cocoon",
     "remote": "https://gitgud.io/ll.mirrors/rjw-cocoon.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "chillrjw",
     "label": "Chillrjw",
     "remote": "https://github.com/EaglePhntm/ChillRjw.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "self-insemination",
     "label": "Self Insemination",
     "remote": "https://gitgud.io/MimiNil/self-insemination.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "zoophile-addon",
     "label": "Zoophile Addon",
     "remote": "https://gitgud.io/MimiNil/zoophile_addon.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "abscon-hide-name-tags",
     "label": "Abscon Hide Name Tags",
     "remote": "https://gitgud.io/AbstractConcept/abscon-hide-name-tags.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "aelina-lewd-menu",
     "label": "Aelina Lewd Menu",
     "remote": "https://gitgud.io/aelina/aelina-lewd-menu.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "abscon-underwear-precept",
     "label": "Abscon Underwear Precept",
     "remote": "https://gitgud.io/AbstractConcept/abscon-underwear-precept.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "abscon-apparel-settings-for-rjw",
     "label": "Abscon Apparel Settings For Rjw",
     "remote": "https://gitgud.io/AbstractConcept/abscon-apparel-settings-for-rjw.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "abscon-dynamically-cropped-apparel",
     "label": "Abscon Dynamically Cropped Apparel",
     "remote": "https://gitgud.io/AbstractConcept/abscon-dynamically-cropped-apparel.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "abscon-underwear-coverage-tweaks",
     "label": "Abscon Underwear Coverage Tweaks",
     "remote": "https://gitgud.io/AbstractConcept/abscon-underwear-coverage-tweaks.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "lusts-anomaly",
     "label": "Lusts Anomaly",
     "remote": "https://gitgud.io/MimiNil/lusts-anomaly.git",
-    "remark": "Anomaly"
+    "remark": "Anomaly",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "sized-apparel-heads",
     "label": "Sized Apparel - Heads",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-heads.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "sized-apparel-extended",
     "label": "Sized Apparel - Extended",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-extended.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "underwhere-sized-apparel",
     "label": "Sized Apparel - Underwhere",
     "remote": "https://gitgud.io/ll.mirrors/underwhere-sized-apparel.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "sized-apparel-races-milira",
     "label": "Sized Apparel - Races Milira",
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-races-milira.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "sized-apparel-alien-textures",
     "label": "Sized Apparel - Alien Textures",
     "remote": "https://gitgud.io/NyaamZ/sizedapparel-alien-textures.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "chaerens-apparel",
     "label": "Chaerens Apparel",
     "remote": "https://gitgud.io/ll.mirrors/chaerens-apparel.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "valentines-day-apparel",
     "label": "Valentines Day Apparel",
     "remote": "https://gitgud.io/ll.mirrors/valentines-day-apparel.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "crest",
     "label": "Crest",
     "remote": "https://gitgud.io/MimiNil/crest.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "multiple-races-sar-patch",
@@ -611,49 +1028,88 @@
     "name": "multiple-races-sar-patch-updated",
     "label": "Multiple Races Sar Patch [Updated]",
     "remote": "https://gitgud.io/Ryufais/Multiple-Races-SA0-Patch.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "multiple-orgasms",
     "label": "Multiple Orgasms",
     "remote": "https://github.com/vegapnk/MultipleOrgasms.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "rjw-onahofairy",
     "label": "RJW - Onahofairy",
     "remote": "https://gitgud.io/aoinasuko/rjw_onahofairy.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "nephila",
     "label": "Nephila",
     "remote": "https://gitgud.io/MimiNil/nephila.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1,
+      1.1,
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rjw-race-support-15",
     "label": "RJW - Race Support",
     "remote": "https://gitgud.io/WinterKein/rjw-race-support.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-extra-patchs",
     "label": "RJW - Extra Patches",
     "remote": "https://gitgud.io/RobTheRobotGuard/rjw-extra-patchs.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjwanimaddons-sextra2",
     "label": "RJWAnimAddons - SeXtra2",
     "remote": "https://gitgud.io/Tory/rjwanimaddons-sextra2.git",
-    "remark": "Animations"
+    "remark": "Animations",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "hawk-anims",
     "label": "Hawk Anims",
     "remote": "https://github.com/Hawkeye32/Hawk_Anims.git",
-    "remark": "Animations"
+    "remark": "Animations",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "ultimate-animation-pack",
@@ -665,121 +1121,216 @@
     "name": "hc-animalreskins-complete-2-for-canines-animations",
     "label": "HC Animalreskins Complete 2 For Canines Animations",
     "remote": "https://gitgud.io/Alpenglow305/h.c-animalreskins-complete-2-for-canines-animations.git",
-    "remark": "Animations"
+    "remark": "Animations",
+    "supportedVersions": [
+      1,
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "abscon-classic-animations-pack",
     "label": "Abscon Classic Animations Pack",
     "remote": "https://gitgud.io/AbstractConcept/abscon-classic-animations-pack.git",
-    "remark": "Animations"
+    "remark": "Animations",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "rjw-sexpanded-core",
     "label": "RJW Sexpanded - Core",
     "remote": "https://gitgud.io/KiraBadArtist/rjw-sexpanded-core.git",
-    "remark": "Resources"
+    "remark": "Resources",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-sexpanded-reproduction",
     "label": "RJW Sexpanded - Reproduction",
     "remote": "https://gitgud.io/KiraBadArtist/rjw-sexpanded-reproduction.git",
-    "remark": "Resources"
+    "remark": "Resources",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-ero-trader",
     "label": "RJW - Ero Trader",
     "remote": "https://gitgud.io/Nalzurin/rjw-ero-trader.git",
-    "remark": "Resources"
+    "remark": "Resources",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2",
     "label": "Rimvore 2",
     "remote": "https://gitlab.com/Nabber/rimvore-2.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2-overstuffed",
     "label": "Rimvore 2 - Overstuffed",
     "remote": "https://gitlab.com/MamaHorseteeth/rimvore-2-overstuffed.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2-carnivorousplants",
     "label": "Rimvore 2 - Carnivorousplants",
     "remote": "https://gitlab.com/Nabber/carnivorousplants.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2-reformers",
     "label": "Rimvore 2 - Reformers",
     "remote": "https://gitlab.com/whatif12stuff/rv2reformers.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2-interactions",
     "label": "Rimvore 2 - Interactions",
     "remote": "https://gitlab.com/whatif12/rutrix-interactions-continued.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2-misc",
     "label": "Rimvore 2 - Misc",
     "remote": "https://gitlab.com/whatif12/rutrix-misc-continued.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2-product-texture",
     "label": "Rimvore 2 - Product Texture",
     "remote": "https://gitlab.com/Amecissist7/rimvore-product-texture.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rimvore-2-cumslimes",
     "label": "Rimvore 2 - Cumslimes",
     "remote": "https://gitlab.com/Nabber/cumslimes.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rimvore-2-cumslimesarepeopletoo",
     "label": "Rimvore 2 - Cumslimes are people too",
     "remote": "https://gitlab.com/Nabber/cumslimesarepeopletoo.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rimvore-2-ediblescat",
     "label": "Rimvore 2 - Edible Scat",
     "remote": "https://gitlab.com/misplacedtf/RimVore2scat.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rimvore-2-drinkablepiss",
     "label": "Rimvore 2 - Drinkable Piss",
     "remote": "https://gitlab.com/misplacedtf/rimvore2piss.git",
-    "remark": "Vore"
+    "remark": "Vore",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "fishery",
     "label": "Fishery",
     "remote": "https://github.com/bbradson/Fishery.git",
-    "remark": "Performance"
+    "remark": "Performance",
+    "supportedVersions": [
+      1.2,
+      1.3,
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "performance-fish",
     "label": "Performance Fish",
     "remote": "https://github.com/bbradson/Performance-Fish.git",
-    "remark": "Performance"
+    "remark": "Performance",
+    "supportedVersions": [
+      1.4,
+      1.5
+    ]
   },
   {
     "name": "rjw-brothel-colony-quest-patch",
     "label": "RJW - Brothel Colony - Quest Patch",
     "remote": "https://gitgud.io/aoinasuko/rjw-brothel-colony-quest-patch.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "akt-lewd-clothes",
     "label": "Akt Lewd Clothes",
     "remote": "https://gitgud.io/TeH_Dav/akt-lewd-clothes.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.3,
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "bep-fairy-furniture-addon-brothel-signs",
@@ -791,13 +1342,19 @@
     "name": "human-art-job",
     "label": "Human Art Job",
     "remote": "https://gitgud.io/dordheaven/human-art-job.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "rjw-accuratinator",
     "label": "RJW - Accuratinator",
     "remote": "https://github.com/ShauaPuta/RJW-accuratinator.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "yr-hentai-prime",
@@ -809,84 +1366,138 @@
     "name": "xenomorphtype",
     "label": "Alien | Rimworld",
     "remote": "https://gitgud.io/Nighzmarquls/xenomorphtype.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "lewd-canine-style",
     "label": "Lewd Canine Style",
     "remote": "https://gitgud.io/Alpenglow305/lewd-canine-style.git",
-    "remark": "Ideology"
+    "remark": "Ideology",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "nugerumons-shenanigans",
     "label": "Nugerumons Shenanigans",
     "remote": "https://gitgud.io/nuganee/nugerumons-shenanigans.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5
+    ]
   },
   {
     "name": "mustards-sexy-statue",
     "label": "Mustards Sexy Statues",
     "remote": "https://gitgud.io/cptyossarian/mustards_sexystatue.git",
-    "remark": "Furniture"
+    "remark": "Furniture",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "metal-horror-spread-std",
     "label": "Metal Horror Spreads through Sex",
     "remote": "https://gitgud.io/Nalzurin/metal-horror-spreads-through-sex.git",
-    "remark": "Anomaly"
+    "remark": "Anomaly",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "euclidean-fantasy-races",
     "label": "Euclidean Fantasy Races",
     "remote": "https://gitgud.io/Euclidean/Fantasy-Races.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1.4,
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-sexpanded-corruption",
     "label": "RJW - Sexpanded - Corruption",
     "remote": "https://gitgud.io/KiraBadArtist/rjw-sexpanded-corruption.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rim-holstaur",
     "label": "Rim - Holstaur",
     "remote": "https://github.com/Sullos/rimholstaur.git",
-    "remark": "Races"
+    "remark": "Races",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "Amor Tentaculum",
     "label": "amor-tentaculum",
     "remote": "https://github.com/MrCastle69/Amor-tentaculum.git",
-    "remark": "Requires 'EBSG Framework' and 'Vanilla Expanded Framework'"
+    "remark": "Requires 'EBSG Framework' and 'Vanilla Expanded Framework'",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-flavor-text",
     "label": "RJW - Flavor Text",
     "remote": "https://gitlab.com/mod-moth/rjw-flavor-text.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "petification",
     "label": "Petification",
     "remote": "https://github.com/MrCastle69/Petifcation.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "nudity-matters-more-opinions",
     "label": "Nudity Matters More - More Opinions",
     "remote": "https://github.com/MiruKoto/NudityMattersMore_opinions.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "sized-appearel-cinder",
     "label": "Sized Apparel - Cinder",
     "remote": "https://github.com/suancai1234/Cinder_SizedApparel.git",
-    "remark": "Bodies"
+    "remark": "Bodies",
+    "supportedVersions": [
+      1.5,
+      1.6
+    ]
   },
   {
     "name": "rjw-elt-stretching",
     "label": "RJW - Elt Stretching",
     "remote": "https://gitgud.io/ElToro/rjw-elt-stretching.git",
-    "remark": "Biotech"
+    "remark": "Biotech",
+    "supportedVersions": [
+      1.6
+    ]
   }
 ]
