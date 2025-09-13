@@ -1,9 +1,16 @@
 {
     "name": "rw-lazy-installer",
     "version": "1.5.2",
-    "main": "index.js",
+    "main": "dist/index.js",
     "license": "MIT",
     "type": "module",
+    "scripts": {
+        "dev": "tsx src/index.ts",
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "clean": "rm -rf dist",
+        "typecheck": "tsc --noEmit"
+    },
     "dependencies": {
         "chalk": "^4.1.2",
         "commander": "^8.2.0",
@@ -11,8 +18,13 @@
         "fast-xml-parser": "^4.5.0",
         "simple-git": "^3.24.0"
     },
+    "devDependencies": {
+        "@types/node": "^22.10.2",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2"
+    },
     "bin": {
-        "rw-lazy-installer": "index.js",
-        "rw-update-masterlist": "update-masterlist.js"
+        "rw-lazy-installer": "dist/index.js",
+        "rw-update-masterlist": "dist/update-masterlist.js"
     }
 }

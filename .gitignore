@@ -4,6 +4,10 @@ CLAUDE.md
 .claude/*
 .taskmaster/*
 
+# TypeScript build output
+dist/
+*.tsbuildinfo
+
 # Logs
 logs
 *.log

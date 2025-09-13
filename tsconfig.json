@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    // Language and Environment
+    "target": "ES2022",                     // Modern Node.js support
+    "module": "ESNext",                     // ESM modules
+    "moduleResolution": "node",             // Node-style module resolution
+    "lib": ["ES2022"],                      // Available libraries
+
+    // Emit Configuration
+    "outDir": "./dist",                     // Output directory
+    "rootDir": "./src",                     // Source directory
+    "sourceMap": true,                      // Generate source maps
+    "declaration": true,                    // Generate .d.ts files
+    "declarationMap": true,                 // Generate .d.ts.map files
+    "removeComments": true,                 // Remove comments in output
+
+    // Type Checking
+    "strict": true,                         // Enable all strict checks
+    "noImplicitAny": true,                  // Error on implicit any
+    "strictNullChecks": true,               // Strict null checking
+    "strictFunctionTypes": true,            // Strict function types
+    "strictBindCallApply": true,            // Strict bind/call/apply
+    "strictPropertyInitialization": true,   // Strict property initialization
+    "noImplicitThis": true,                 // Error on implicit this
+    "alwaysStrict": true,                   // Use strict mode
+
+    // Additional Checks
+    "noUnusedLocals": true,                 // Error on unused locals
+    "noUnusedParameters": true,             // Error on unused parameters
+    "noImplicitReturns": true,              // Error when not all paths return
+    "noFallthroughCasesInSwitch": true,     // Error on fallthrough cases
+    "noUncheckedIndexedAccess": true,       // Add undefined to index signatures
+    "noImplicitOverride": true,             // Require override keyword
+
+    // Module Interop
+    "esModuleInterop": true,                // Better CommonJS interop
+    "allowSyntheticDefaultImports": true,   // Allow default imports
+    "forceConsistentCasingInFileNames": true, // Enforce consistent file casing
+
+    // Advanced
+    "skipLibCheck": true,                   // Skip type checking of .d.ts files
+    "resolveJsonModule": true,              // Allow importing JSON
+    "allowJs": false,                       // Don't allow JS files
+    "checkJs": false                        // Don't check JS files
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}
