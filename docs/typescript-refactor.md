@@ -143,7 +143,7 @@ tests/
 ### ModManagerService (Business Logic Orchestrator)
 
 ```typescript
-interface IModManagerService {
+interface ModManagerService {
   installMod(modName: string): Promise<ModInstallation>
   updateMod(modId: string): Promise<UpdateResult>
   updateAllMods(options?: UpdateOptions): Promise<UpdateResult[]>
@@ -164,7 +164,7 @@ interface IModManagerService {
 ### GitService (Version Control Abstraction)
 
 ```typescript
-interface IGitService {
+interface GitService {
   clone(url: string, destination: string): Promise<void>
   fetch(path: string): Promise<void>
   pull(path: string): Promise<PullResult>
@@ -198,7 +198,7 @@ interface LogEntry {
 ### ConfigService (Configuration Management)
 
 ```typescript
-interface IConfigService {
+interface ConfigService {
   get<T>(key: string): T | undefined
   set<T>(key: string, value: T): void
   getInstallationDir(): string
@@ -229,7 +229,7 @@ interface UserPreferences {
 ### ModRepository (Data Access Layer)
 
 ```typescript
-interface IModRepository {
+interface ModRepository {
   findAll(): Promise<Mod[]>
   findByName(name: string): Promise<Mod | undefined>
   findByRemote(remote: string): Promise<Mod | undefined>
@@ -257,7 +257,7 @@ interface SearchCriteria {
 ### DisplayService (Presentation Layer)
 
 ```typescript
-interface IDisplayService {
+interface DisplayService {
   showHeader(): void
   showSuccess(message: string): void
   showError(message: string, error?: Error): void
@@ -288,14 +288,14 @@ interface DisplayOptions {
 ### VersionFetcherService (External Version Data)
 
 ```typescript
-interface IVersionFetcherService {
+interface VersionFetcherService {
   fetchVersions(gitUrl: string): Promise<string[]>
   fetchLatestVersion(gitUrl: string): Promise<string>
-  setStrategy(strategy: IFetchStrategy): void
-  detectStrategy(url: string): IFetchStrategy
+  setStrategy(strategy: FetchStrategy): void
+  detectStrategy(url: string): FetchStrategy
 }
 
-interface IFetchStrategy {
+interface FetchStrategy {
   canHandle(url: string): boolean
   fetchVersions(url: string): Promise<string[]>
   fetchLatestVersion(url: string): Promise<string>
@@ -373,7 +373,7 @@ interface UpdateResult {
 }
 
 // Report for installation checks
-interface InstallationReport {
+interface nstallationReport {
   totalMods: number
   installedMods: number
   corruptedMods: string[]
@@ -408,9 +408,9 @@ interface CommandArgs {
 
 interface CommandContext {
   services: ServiceContainer
-  config: IConfigService
-  logger: ILogger
-  display: IDisplayService
+  config: ConfigService
+  logger: Logger
+  display: DisplayService
 }
 
 // Specific command implementations
@@ -508,8 +508,8 @@ class NetworkError extends AppError {
 ```typescript
 class ErrorHandler {
   constructor(
-    private logger: ILogger,
-    private display: IDisplayService
+    private logger: Logger,
+    private display: DisplayService
   ) {}
 
   handle(error: unknown): void {
@@ -568,42 +568,42 @@ function configureContainer(): Container {
   const container = new Container()
   
   // Services
-  container.bind<IModManagerService>(TYPES.ModManager)
+  container.bind<ModManagerService>(TYPES.ModManager)
     .to(ModManagerService)
     .inSingletonScope()
   
-  container.bind<IGitService>(TYPES.GitService)
+  container.bind<GitService>(TYPES.GitService)
     .to(GitService)
     .inSingletonScope()
   
-  container.bind<IConfigService>(TYPES.ConfigService)
+  container.bind<ConfigService>(TYPES.ConfigService)
     .to(ConfigService)
     .inSingletonScope()
   
   // Repositories
-  container.bind<IModRepository>(TYPES.ModRepository)
+  container.bind<ModRepository>(TYPES.ModRepository)
     .to(JsonModRepository)
     .inSingletonScope()
   
   // Infrastructure
-  container.bind<ILogger>(TYPES.Logger)
+  container.bind<Logger>(TYPES.Logger)
     .to(ConsoleLogger)
     .inSingletonScope()
   
-  container.bind<IDisplayService>(TYPES.DisplayService)
+  container.bind<DisplayService>(TYPES.DisplayService)
     .to(ConsoleDisplayService)
     .inSingletonScope()
   
   // Factories
-  container.bind<Factory<IFetchStrategy>>(TYPES.FetchStrategyFactory)
+  container.bind<Factory<FetchStrategy>>(TYPES.FetchStrategyFactory)
     .toFactory((context) => {
       return (url: string) => {
         if (url.includes('github.com')) {
-          return context.container.get<IFetchStrategy>(GithubStrategy)
+          return context.container.get<FetchStrategy>(GithubStrategy)
         } else if (url.includes('gitlab.com')) {
-          return context.container.get<IFetchStrategy>(GitlabStrategy)
+          return context.container.get<FetchStrategy>(GitlabStrategy)
         } else {
-          return context.container.get<IFetchStrategy>(GitgudStrategy)
+          return context.container.get<FetchStrategy>(GitgudStrategy)
         }
       }
     })
@@ -799,14 +799,14 @@ function configureContainer(): Container {
 // Example: ModManagerService tests
 describe('ModManagerService', () => {
   let service: ModManagerService
-  let mockGitService: jest.Mocked<IGitService>
-  let mockConfigService: jest.Mocked<IConfigService>
-  let mockModRepository: jest.Mocked<IModRepository>
+  let mockGitService: jest.Mocked<GitService>
+  let mockConfigService: jest.Mocked<ConfigService>
+  let mockModRepository: jest.Mocked<ModRepository>
 
   beforeEach(() => {
-    mockGitService = createMock<IGitService>()
-    mockConfigService = createMock<IConfigService>()
-    mockModRepository = createMock<IModRepository>()
+    mockGitService = createMock<GitService>()
+    mockConfigService = createMock<ConfigService>()
+    mockModRepository = createMock<ModRepository>()
     
     service = new ModManagerService(
       mockGitService,
