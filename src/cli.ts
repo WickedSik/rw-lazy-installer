@@ -1,0 +1,104 @@
+#!/usr/bin/env node
+
+import { program } from 'commander';
+import { readFile } from 'fs/promises';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import { ConfigManager } from './services/config-manager.js';
+import { RepositoryManager } from './services/repository-manager.js';
+import { ModManager } from './services/mod-manager.js';
+import { checkCommand, installCommand } from './commands/index.js';
+import { showHeader } from './utils/display.js';
+import type { Mod } from './types/mod';
+
+// Load package.json for version
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const packageJson = JSON.parse(
+  await readFile(path.join(__dirname, '../package.json'), 'utf-8')
+);
+const version = packageJson.version;
+
+// Load mods registry
+const modsRegistry: Mod[] = JSON.parse(
+  await readFile(path.join(__dirname, '../mods.json'), 'utf-8')
+);
+
+// Initialize services
+const config = new ConfigManager('rimworld-lazy-installer');
+const repository = new RepositoryManager();
+const modManager = new ModManager(config, repository, modsRegistry);
+
+// Helper to get installation directory
+function getInstallationDir(options: any): string {
+  return options.dir || config.getInstallationDir() || process.cwd();
+}
+
+// Setup CLI
+program.version(version);
+program.option('-d, --dir <dir>', 'RimWorld Mod Directory');
+
+// Check command
+program
+  .command('check')
+  .description('Reads and lists installed mods')
+  .action(async () => {
+    showHeader(version);
+    const installDir = getInstallationDir(program.opts());
+    await checkCommand(modManager, installDir, program.opts());
+  });
+
+// Install command
+program
+  .command('install <name...>')
+  .description('Install mods that do not exist yet, this command will not update')
+  .action(async (names: string[]) => {
+    showHeader(version);
+    const installDir = getInstallationDir(program.opts());
+    await installCommand(modManager, installDir, { ...program.opts(), names });
+  });
+
+// Update command (placeholder)
+program
+  .command('update')
+  .description('Updates mods, this command will not install new mods')
+  .option('-l, --log', 'Show changelog')
+  .option('-r, --relevant', 'Show changelog for updated mods')
+  .action(async () => {
+    showHeader(version);
+    console.log('Update command not yet implemented in TypeScript version');
+  });
+
+// Uninstall command (placeholder)
+program
+  .command('uninstall <name...>')
+  .description('Uninstalls mod if installed')
+  .action(async () => {
+    showHeader(version);
+    console.log('Uninstall command not yet implemented in TypeScript version');
+  });
+
+// List command (placeholder)
+program
+  .command('list', { isDefault: true })
+  .description('A little overview of what this does')
+  .option('--no-installed', 'Do not show only installed mods')
+  .option('--no-new', 'Do not show mods that can be installed')
+  .action(async () => {
+    showHeader(version);
+    console.log('List command not yet implemented in TypeScript version');
+  });
+
+// Search command (placeholder)
+program
+  .command('search <term>')
+  .description('Search within the list')
+  .option('--no-installed', 'Do not show only installed mods')
+  .option('--no-new', 'Do not show mods that can be installed')
+  .action(async () => {
+    showHeader(version);
+    console.log('Search command not yet implemented in TypeScript version');
+  });
+
+// Parse arguments
+program.parse();
