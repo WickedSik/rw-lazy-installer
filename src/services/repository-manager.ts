@@ -7,9 +7,24 @@ import type { GitPullResult, GitStatus } from '../types/git';
  */
 export class RepositoryManager {
   private git: SimpleGit;
+  private gitOptions: Partial<SimpleGitOptions>;
 
   constructor(options?: Partial<SimpleGitOptions>) {
-    this.git = options ? simpleGit(options) : simpleGit();
+    // Configure options to prevent authentication prompts
+    // We use 'env' command to set environment variables that prevent Git from asking for credentials
+    this.gitOptions = {
+      ...options,
+      // Use env command to set environment variables that block authentication
+      binary: ['env', 'GIT_TERMINAL_PROMPT=0 GIT_ASKPASS=echo SSH_ASKPASS=echo git'] as [string, string],
+      // Add a timeout to prevent hanging on auth
+      timeout: {
+        block: 30000,  // 30 seconds max for any operation
+        ...options?.timeout,
+      },
+    };
+
+    // Create git instance with auth blocking
+    this.git = simpleGit(this.gitOptions);
   }
 
   /**
@@ -28,7 +43,11 @@ export class RepositoryManager {
    */
   async updateRepository(path: string): Promise<GitPullResult> {
     try {
-      const repo = simpleGit(path);
+      // Create repo instance with auth blocking
+      const repo = simpleGit({
+        ...this.gitOptions,
+        baseDir: path,
+      });
 
       // Get current commit before update
       const beforeCommit = await repo.revparse(['HEAD']);
@@ -58,7 +77,10 @@ export class RepositoryManager {
    */
   async getRepositoryStatus(path: string): Promise<GitStatus> {
     try {
-      const repo = simpleGit(path);
+      const repo = simpleGit({
+        ...this.gitOptions,
+        baseDir: path,
+      });
 
       // Check if it's a valid Git repository
       const isRepo = await repo.checkIsRepo();
@@ -92,7 +114,10 @@ export class RepositoryManager {
    */
   async getRemoteUrl(path: string): Promise<string | undefined> {
     try {
-      const repo = simpleGit(path);
+      const repo = simpleGit({
+        ...this.gitOptions,
+        baseDir: path,
+      });
       const remotes = await repo.getRemotes(true);
       return remotes.length > 0 && remotes[0]?.refs.fetch ? remotes[0].refs.fetch : undefined;
     } catch (error) {
@@ -105,7 +130,10 @@ export class RepositoryManager {
    */
   async getRecentCommits(path: string, limit: number = 5): Promise<Array<{ hash: string; message: string }>> {
     try {
-      const repo = simpleGit(path);
+      const repo = simpleGit({
+        ...this.gitOptions,
+        baseDir: path,
+      });
       const log = await repo.log({ '--max-count': limit });
 
       return log.all.map(commit => ({
@@ -122,7 +150,10 @@ export class RepositoryManager {
    */
   async getCurrentCommit(path: string): Promise<string | undefined> {
     try {
-      const repo = simpleGit(path);
+      const repo = simpleGit({
+        ...this.gitOptions,
+        baseDir: path,
+      });
       return await repo.revparse(['HEAD']);
     } catch (error) {
       return undefined;
