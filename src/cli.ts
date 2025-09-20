@@ -7,7 +7,7 @@ import path from 'path';
 import { ConfigManager } from './services/config-manager.js';
 import { RepositoryManager } from './services/repository-manager.js';
 import { ModManager } from './services/mod-manager.js';
-import { checkCommand, installCommand, updateCommand } from './commands/index.js';
+import { checkCommand, installCommand, updateCommand, uninstallCommand, listCommand } from './commands/index.js';
 import { showHeader } from './utils/display.js';
 import type { Mod } from './types/mod';
 
@@ -74,24 +74,32 @@ program
     });
   });
 
-// Uninstall command (placeholder)
+// Uninstall command
 program
   .command('uninstall <name...>')
   .description('Uninstalls mod if installed')
-  .action(async () => {
+  .action(async (names: string[]) => {
     showHeader(version);
-    console.log('Uninstall command not yet implemented in TypeScript version');
+    await uninstallCommand(names, {
+      dir: program.opts().dir,
+      configKey: 'rimworld-lazy-installer'
+    }, modsRegistry);
   });
 
-// List command (placeholder)
+// List command
 program
   .command('list', { isDefault: true })
   .description('A little overview of what this does')
   .option('--no-installed', 'Do not show only installed mods')
   .option('--no-new', 'Do not show mods that can be installed')
-  .action(async () => {
+  .action(async (options) => {
     showHeader(version);
-    console.log('List command not yet implemented in TypeScript version');
+    await listCommand({
+      dir: program.opts().dir,
+      configKey: 'rimworld-lazy-installer',
+      installed: options.installed,
+      new: options.new
+    }, modsRegistry);
   });
 
 // Search command (placeholder)
