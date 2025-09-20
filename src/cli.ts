@@ -7,7 +7,7 @@ import path from 'path';
 import { ConfigManager } from './services/config-manager.js';
 import { RepositoryManager } from './services/repository-manager.js';
 import { ModManager } from './services/mod-manager.js';
-import { checkCommand, installCommand, updateCommand, uninstallCommand, listCommand } from './commands/index.js';
+import { checkCommand, installCommand, updateCommand, uninstallCommand, listCommand, searchCommand } from './commands/index.js';
 import { showHeader } from './utils/display.js';
 import type { Mod } from './types/mod';
 
@@ -102,15 +102,20 @@ program
     }, modsRegistry);
   });
 
-// Search command (placeholder)
+// Search command
 program
   .command('search <term>')
   .description('Search within the list')
   .option('--no-installed', 'Do not show only installed mods')
   .option('--no-new', 'Do not show mods that can be installed')
-  .action(async () => {
+  .action(async (term: string, options) => {
     showHeader(version);
-    console.log('Search command not yet implemented in TypeScript version');
+    await searchCommand(term, {
+      dir: program.opts().dir,
+      configKey: 'rimworld-lazy-installer',
+      installed: options.installed,
+      new: options.new
+    }, modsRegistry);
   });
 
 // Parse arguments
