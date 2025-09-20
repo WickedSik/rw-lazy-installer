@@ -3,12 +3,19 @@ import { ConfigManager } from '../services/config-manager.js';
 import { RepositoryManager } from '../services/repository-manager.js';
 import type { CommandOptions } from '../types/command.js';
 
+interface UpdateCommandOptions extends CommandOptions {
+  /** Show changelog for all mods */
+  log?: boolean;
+  /** Show changelog only for updated mods */
+  relevant?: boolean;
+}
+
 /**
  * Update installed mods to their latest versions
  */
 export async function updateCommand(
   modNames: string[],
-  options: CommandOptions
+  options: UpdateCommandOptions
 ): Promise<void> {
   const configManager = new ConfigManager(options.configKey || 'default');
   const repoManager = new RepositoryManager();
@@ -54,13 +61,32 @@ export async function updateCommand(
     try {
       console.log(chalk.blue(`Checking ${mod.name}...`));
 
+      // Get current commit before update
+      const beforeCommit = await repoManager.getCurrentCommit(mod.directory);
       const result = await repoManager.updateRepository(mod.directory);
 
       if (result.success) {
-        if (result.hasChanges) {
+        // Get commit after update
+        const afterCommit = await repoManager.getCurrentCommit(mod.directory);
+        const hasChanges = beforeCommit !== afterCommit;
+
+        if (hasChanges) {
           updatedCount++;
           updateResults.push({ mod: mod.name, status: 'updated' });
-          console.log(chalk.green(`✓ Updated ${mod.name}`));
+          console.log(
+            chalk.green(`✓ Updated ${mod.name}`),
+            chalk.yellow(`[${beforeCommit?.substring(0, 6)} -> ${afterCommit?.substring(0, 6)}]`)
+          );
+
+          // Show changelog if requested
+          if (options.log || options.relevant) {
+            const commits = await repoManager.getRecentCommits(mod.directory, 5);
+            if (commits.length > 0) {
+              commits.forEach(commit => {
+                console.log(chalk.white(`\t[${commit.hash}] ${commit.message}`));
+              });
+            }
+          }
 
           // Update the last updated timestamp
           mod.lastUpdated = new Date();
@@ -68,7 +94,20 @@ export async function updateCommand(
           configManager.addOrUpdateInstalledMod(mod);
         } else {
           updateResults.push({ mod: mod.name, status: 'no-changes' });
-          console.log(chalk.gray(`✓ ${mod.name} is already up to date`));
+          console.log(
+            chalk.gray(`✓ ${mod.name} is already up to date`),
+            chalk.yellow(`[${afterCommit?.substring(0, 6)}]`)
+          );
+
+          // Show changelog if --log is specified (not --relevant)
+          if (options.log) {
+            const commits = await repoManager.getRecentCommits(mod.directory, 5);
+            if (commits.length > 0) {
+              commits.forEach(commit => {
+                console.log(chalk.white(`\t[${commit.hash}] ${commit.message}`));
+              });
+            }
+          }
 
           // Just update last checked timestamp
           mod.lastChecked = new Date();
