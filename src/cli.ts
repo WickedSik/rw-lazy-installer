@@ -7,7 +7,7 @@ import path from 'path';
 import { ConfigManager } from './services/config-manager.js';
 import { RepositoryManager } from './services/repository-manager.js';
 import { ModManager } from './services/mod-manager.js';
-import { checkCommand, installCommand } from './commands/index.js';
+import { checkCommand, installCommand, updateCommand } from './commands/index.js';
 import { showHeader } from './utils/display.js';
 import type { Mod } from './types/mod';
 
@@ -58,15 +58,18 @@ program
     await installCommand(modManager, installDir, { ...program.opts(), names });
   });
 
-// Update command (placeholder)
+// Update command
 program
-  .command('update')
+  .command('update [names...]')
   .description('Updates mods, this command will not install new mods')
   .option('-l, --log', 'Show changelog')
   .option('-r, --relevant', 'Show changelog for updated mods')
-  .action(async () => {
+  .action(async (names: string[] = []) => {
     showHeader(version);
-    console.log('Update command not yet implemented in TypeScript version');
+    await updateCommand(names, {
+      dir: program.opts().dir,
+      configKey: 'rimworld-lazy-installer'
+    });
   });
 
 // Uninstall command (placeholder)
