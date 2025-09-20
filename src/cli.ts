@@ -64,11 +64,13 @@ program
   .description('Updates mods, this command will not install new mods')
   .option('-l, --log', 'Show changelog')
   .option('-r, --relevant', 'Show changelog for updated mods')
-  .action(async (names: string[] = []) => {
+  .action(async (names: string[] = [], options) => {
     showHeader(version);
     await updateCommand(names, {
       dir: program.opts().dir,
-      configKey: 'rimworld-lazy-installer'
+      configKey: 'rimworld-lazy-installer',
+      log: options.log,
+      relevant: options.relevant
     });
   });
 
