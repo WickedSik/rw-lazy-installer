@@ -1,0 +1,25 @@
+[
+  {
+    "id": "test-mod-1",
+    "label": "Test Mod 1",
+    "name": "test-mod-1",
+    "remote": "https://github.com/test/test-mod-1.git",
+    "remark": "Test mod for unit tests",
+    "deprecated": false
+  },
+  {
+    "id": "test-mod-2",
+    "label": "Test Mod 2",
+    "name": "test-mod-2",
+    "remote": "https://github.com/test/test-mod-2.git",
+    "deprecated": false
+  },
+  {
+    "id": "deprecated-mod",
+    "label": "Deprecated Test Mod",
+    "name": "deprecated-mod",
+    "remote": "https://github.com/test/deprecated-mod.git",
+    "remark": "This mod is deprecated",
+    "deprecated": true
+  }
+]
