@@ -14,8 +14,6 @@ export class RepositoryManager {
     // We use 'env' command to set environment variables that prevent Git from asking for credentials
     this.gitOptions = {
       ...options,
-      // Use env command to set environment variables that block authentication
-      binary: ['env', 'GIT_TERMINAL_PROMPT=0 GIT_ASKPASS=echo SSH_ASKPASS=echo git'] as [string, string],
       // Add a timeout to prevent hanging on auth
       timeout: {
         block: 30000,  // 30 seconds max for any operation

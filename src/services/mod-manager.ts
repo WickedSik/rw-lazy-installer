@@ -17,7 +17,8 @@ import type {
 export interface ScanResult {
   /** Mods found in directory */
   found: Array<{
-    name: string;
+    name: string;        // Actual directory name on disk
+    modName: string;     // Registry mod name for display
     remote: string;
     versions: string[];
     isNew: boolean;  // Not in config yet
@@ -240,7 +241,8 @@ export class ModManager {
       const isNew = !this.isModInstalled(mod.remote);
 
       result.found.push({
-        name: mod.name,
+        name: dir,  // Use actual directory name from disk
+        modName: mod.name,  // Registry mod name for display
         remote: mod.remote,
         versions,
         isNew,
@@ -274,7 +276,9 @@ export class ModManager {
       const existing = this.config.findInstalledModByRemote(found.remote);
 
       if (existing) {
-        // Update existing entry
+        // Update existing entry with correct directory
+        existing.name = found.name;  // Update to actual directory name
+        existing.directory = path.join(installDir, found.name);  // Update to actual path
         existing.supportedVersions = found.versions;
         updatedMods.push(existing);
       } else {
