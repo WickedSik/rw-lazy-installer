@@ -103,6 +103,6 @@ export async function checkCommand(
 
   } catch (error) {
     console.error(chalk.red`Error:`, (error as Error).message);
-    process.exit(1);
+    throw error;
   }
 }
