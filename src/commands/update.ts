@@ -23,11 +23,7 @@ export async function updateCommand(
   // Get directory from options or config
   const directory = options.dir || configManager.getInstallationDir();
   if (!directory) {
-    console.error(
-      chalk.red('Error: No installation directory specified.'),
-      chalk.yellow('\nUse --dir option or run "check" command first to set the directory.')
-    );
-    process.exit(1);
+    throw new Error('No installation directory specified. Use --dir option or run "check" command first to set the directory.');
   }
 
   // Get all installed mods
@@ -44,9 +40,16 @@ export async function updateCommand(
       modNames.includes(mod.modId) || modNames.includes(mod.name)
     );
 
+    // Log which mods are not installed
+    const notInstalled = modNames.filter(name =>
+      !installedMods.some(mod => mod.modId === name || mod.name === name)
+    );
+    notInstalled.forEach(name => {
+      console.log(chalk.red(`${name} is not installed`));
+    });
+
     if (modsToUpdate.length === 0) {
-      console.error(chalk.red('Error: None of the specified mods are installed.'));
-      process.exit(1);
+      throw new Error('None of the specified mods are installed.');
     }
   }
 
@@ -150,8 +153,8 @@ export async function updateCommand(
     }
   }
 
-  // Exit with error code if any updates failed
+  // Throw error if any updates failed
   if (failedCount > 0) {
-    process.exit(1);
+    throw new Error(`Failed to update ${failedCount} mod(s)`);
   }
 }

@@ -16,7 +16,7 @@ export async function uninstallCommand(
 
   if (modNames.length === 0) {
     console.error(chalk.red('Error: Please specify at least one mod to uninstall.'));
-    process.exit(1);
+    throw new Error('Please specify at least one mod to uninstall.');
   }
 
   const installedMods = configManager.getInstalledMods();
@@ -93,8 +93,8 @@ export async function uninstallCommand(
     }
   }
 
-  // Exit with error code if any uninstalls failed
+  // Throw error if any uninstalls failed
   if (failedCount > 0) {
-    process.exit(1);
+    throw new Error(`Failed to uninstall ${failedCount} mod(s)`);
   }
 }
