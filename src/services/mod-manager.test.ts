@@ -1,25 +1,37 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import type { ModInstallation, Mod } from '../types/mod';
 
+// Use vi.hoisted to ensure xmlParseMock is available in the mock
+const { xmlParseMock } = vi.hoisted(() => {
+  return {
+    xmlParseMock: vi.fn()
+  };
+});
+
 // Mock fs/promises FIRST - before any imports that might use it
 vi.mock('fs/promises', () => {
+  const readdir = vi.fn();
+  const readFile = vi.fn();
+  const rm = vi.fn();
+
   return {
-    readdir: vi.fn(),
-    readFile: vi.fn(),
-    rm: vi.fn(),
+    default: {
+      readdir,
+      readFile,
+      rm,
+    },
+    readdir,
+    readFile,
+    rm,
   };
 });
 
 // Mock fast-xml-parser
 vi.mock('fast-xml-parser', () => {
-  const parseMock = vi.fn();
-  const XMLParser = vi.fn().mockImplementation(() => ({
-    parse: parseMock
-  }));
-
   return {
-    XMLParser,
-    __parseMock: parseMock  // Export for test access
+    XMLParser: vi.fn(() => ({
+      parse: xmlParseMock
+    }))
   };
 });
 
@@ -27,11 +39,7 @@ vi.mock('fast-xml-parser', () => {
 import { ModManager } from './mod-manager';
 import { ConfigManager } from './config-manager';
 import { RepositoryManager } from './repository-manager';
-import * as fs from 'fs/promises';
-import { XMLParser } from 'fast-xml-parser';
-
-// Get the parse mock for use in tests
-const getXMLParseMock = () => (XMLParser as any).__parseMock || vi.fn();
+import fs from 'fs/promises';
 
 describe('ModManager', () => {
   let modManager: ModManager;
@@ -40,7 +48,8 @@ describe('ModManager', () => {
   let testMods: Mod[];
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    // Use resetAllMocks instead of clearAllMocks to preserve mock implementations
+    vi.resetAllMocks();
 
     // Set up default fs mocks
     vi.mocked(fs.readdir).mockResolvedValue([]);
@@ -168,8 +177,7 @@ describe('ModManager', () => {
       `);
 
       // Set up XMLParser mock to return parsed data
-      const parseMock = getXMLParseMock();
-      parseMock.mockReturnValueOnce({
+      xmlParseMock.mockReturnValueOnce({
         ModMetaData: {
           supportedVersions: {
             li: ['1.4', '1.5']
@@ -425,7 +433,7 @@ describe('ModManager', () => {
         remoteUrl: 'https://github.com/test/test-mod-1.git'
       });
 
-      const result = await modManager.scanDirectory('/test/mods');
+      await modManager.scanDirectory('/test/mods');
 
       // Should only check 'valid-mod'
       expect(mockRepository.getRepositoryStatus).toHaveBeenCalledTimes(1);
@@ -538,8 +546,7 @@ describe('ModManager', () => {
     it('should extract versions from About.xml', async () => {
       vi.mocked(fs.readFile).mockResolvedValueOnce(`<xml></xml>`);
 
-      const parseMock = getXMLParseMock();
-      parseMock.mockReturnValueOnce({
+      xmlParseMock.mockReturnValueOnce({
         ModMetaData: {
           supportedVersions: {
             li: ['1.4', '1.5']
@@ -551,13 +558,13 @@ describe('ModManager', () => {
 
       expect(versions).toEqual(['1.4', '1.5']);
       expect(fs.readFile).toHaveBeenCalledWith('/test/mod/About/About.xml', 'utf-8');
+      expect(xmlParseMock).toHaveBeenCalledTimes(1);
     });
 
     it('should handle single version', async () => {
       vi.mocked(fs.readFile).mockResolvedValueOnce(`<xml></xml>`);
 
-      const parseMock = getXMLParseMock();
-      parseMock.mockReturnValueOnce({
+      xmlParseMock.mockReturnValueOnce({
         ModMetaData: {
           supportedVersions: {
             li: '1.5'  // Single value, not array
@@ -580,10 +587,16 @@ describe('ModManager', () => {
 
     it('should return empty array for invalid XML', async () => {
       vi.mocked(fs.readFile).mockResolvedValue('not valid xml');
+      xmlParseMock.mockImplementation(() => {
+        throw new Error('Invalid XML');
+      });
 
       const versions = await modManager.extractModVersions('/test/mod');
 
       expect(versions).toEqual([]);
+
+      // Reset mock for other tests
+      xmlParseMock.mockReset();
     });
   });
 

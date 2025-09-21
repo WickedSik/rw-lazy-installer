@@ -32,7 +32,7 @@ export async function checkCommand(
 
     // Display found mods
     for (const found of scanResult.found) {
-      const mod = modManager.findMod(found.name);
+      const mod = modManager.findMod(found.modName);
       if (!mod) continue;
 
       if (found.isNew) {
