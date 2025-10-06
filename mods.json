@@ -1364,12 +1364,19 @@
   },
   {
     "name": "xenomorphtype",
-    "label": "Alien | Rimworld",
+    "label": "Alien | Rimworld (old)",
     "remote": "https://gitgud.io/Nighzmarquls/xenomorphtype.git",
     "remark": "Races",
     "supportedVersions": [
       1.5
-    ]
+    ],
+    "deprecated": true
+  },
+  {
+    "name": "aliens",
+    "label": "Alien | Rimworld",
+    "remote": "https://github.com/nighzmarquls/Alien-Rimworld.git",
+    "remark": "Races"
   },
   {
     "name": "lewd-canine-style",
