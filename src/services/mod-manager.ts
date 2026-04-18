@@ -352,7 +352,9 @@ export class ModManager {
    * Get all installed mods
    */
   getInstalledMods(): ModInstallation[] {
-    return this.config.getInstalledMods();
+    return this.config.getInstalledMods().sort((a: ModInstallation, b: ModInstallation) => {
+      return a.name.localeCompare(b.name);
+    });
   }
 
   /**
