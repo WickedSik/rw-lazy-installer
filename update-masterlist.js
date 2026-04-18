@@ -7,32 +7,44 @@ async function importJson(file) {
     return JSON.parse(await readFile(new URL(file, import.meta.url)))
 }
 
-async function fetchModVersions(gitUrl) {
+async function fetchModVersions(gitUrl, branch = null) {
     const parser = new XMLParser()
-    
+
     // Convert git URL to raw file URL
     let rawUrl = null
     let fallbackUrl = null
-    
+
     if (gitUrl.includes('gitgud.io')) {
         // GitGud pattern: https://gitgud.io/{user}/{repo}.git
         const urlParts = gitUrl.replace('.git', '').replace('https://', '').split('/')
         const baseUrl = `https://gitgud.io/${urlParts[1]}/${urlParts[2]}`
-        rawUrl = `${baseUrl}/-/raw/master/About/About.xml`
-        fallbackUrl = `${baseUrl}/-/raw/main/About/About.xml`
+        if (branch) {
+            rawUrl = `${baseUrl}/-/raw/${branch}/About/About.xml`
+        } else {
+            rawUrl = `${baseUrl}/-/raw/master/About/About.xml`
+            fallbackUrl = `${baseUrl}/-/raw/main/About/About.xml`
+        }
     } else if (gitUrl.includes('github.com')) {
         // GitHub pattern: https://github.com/{user}/{repo}.git
         const urlParts = gitUrl.replace('.git', '').replace('https://github.com/', '').split('/')
-        rawUrl = `https://raw.githubusercontent.com/${urlParts[0]}/${urlParts[1]}/master/About/About.xml`
-        fallbackUrl = `https://raw.githubusercontent.com/${urlParts[0]}/${urlParts[1]}/main/About/About.xml`
+        if (branch) {
+            rawUrl = `https://raw.githubusercontent.com/${urlParts[0]}/${urlParts[1]}/${branch}/About/About.xml`
+        } else {
+            rawUrl = `https://raw.githubusercontent.com/${urlParts[0]}/${urlParts[1]}/master/About/About.xml`
+            fallbackUrl = `https://raw.githubusercontent.com/${urlParts[0]}/${urlParts[1]}/main/About/About.xml`
+        }
     } else if (gitUrl.includes('gitlab.com')) {
         // GitLab pattern: https://gitlab.com/{user}/{repo}.git
         const urlParts = gitUrl.replace('.git', '').replace('https://', '').split('/')
         const baseUrl = `https://gitlab.com/${urlParts[1]}/${urlParts[2]}`
-        rawUrl = `${baseUrl}/-/raw/main/About/About.xml`
-        fallbackUrl = `${baseUrl}/-/raw/master/About/About.xml`
+        if (branch) {
+            rawUrl = `${baseUrl}/-/raw/${branch}/About/About.xml`
+        } else {
+            rawUrl = `${baseUrl}/-/raw/main/About/About.xml`
+            fallbackUrl = `${baseUrl}/-/raw/master/About/About.xml`
+        }
     }
-    
+
     if (!rawUrl) {
         throw new Error(`Unsupported git hosting platform for URL: ${gitUrl}`)
     }
@@ -207,7 +219,7 @@ const updateMasterlist = async (data) => {
             }
             
             try {
-                const versions = await fetchModVersions(mod.remote)
+                const versions = await fetchModVersions(mod.remote, mod.branch)
                 rwModlist[i] = {
                     ...mod,
                     supportedVersions: versions

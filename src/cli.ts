@@ -92,13 +92,15 @@ program
   .description('A little overview of what this does')
   .option('--no-installed', 'Do not show only installed mods')
   .option('--no-new', 'Do not show mods that can be installed')
+  .option('-s, --supported <version>', 'Filter by supported RimWorld version (e.g., "1.6")')
   .action(async (options) => {
     showHeader(version);
     await listCommand({
       dir: program.opts().dir,
       configKey: 'rimworld-lazy-installer',
       installed: options.installed,
-      new: options.new
+      new: options.new,
+      supported: options.supported
     }, modsRegistry);
   });
 

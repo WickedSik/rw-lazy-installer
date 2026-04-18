@@ -8,6 +8,8 @@ interface ListCommandOptions extends CommandOptions {
   installed?: boolean;
   /** Show new/available mods (default: true) */
   new?: boolean;
+  /** Filter by supported RimWorld version (e.g., "1.6") */
+  supported?: string;
 }
 
 /**
@@ -75,9 +77,14 @@ export async function listCommand(
     console.log(chalk.green`\nInstallable mods:\n`);
 
     const installedRemotes = installedMods.map(m => m.remote.replace('.git', ''));
-    const availableMods = modsRegistry.filter(mod =>
+    let availableMods = modsRegistry.filter(mod =>
       !installedRemotes.includes(mod.remote.replace('.git', ''))
     );
+
+    // Apply version filter if specified
+    if (options.supported) {
+      availableMods = availableMods.filter(mod => supportsVersion(mod, options.supported!));
+    }
 
     const longestName = Math.max(30, ...availableMods.map(m => m.name.length));
     const longestLabel = Math.max(40, ...availableMods.map(m => m.label.length));
@@ -85,10 +92,13 @@ export async function listCommand(
     availableMods
       .sort((a, b) => a.name.localeCompare(b.name))
       .forEach(mod => {
+        const versionRange = formatVersionRange(mod.supportedVersions?.map(String) || []);
+
         if (mod.deprecated) {
           console.log(
             chalk.strikethrough.green`\t${mod.label.padEnd(longestLabel)}`,
             chalk.strikethrough.bold.white`${mod.name.padEnd(longestName)}`,
+            chalk.strikethrough.bold.yellow`${versionRange.padEnd(20)}`,
             chalk.strikethrough.yellow`${mod.remote.padEnd(70)}`,
             mod.remark ? chalk.gray` - ${mod.remark}` : ''
           );
@@ -96,6 +106,7 @@ export async function listCommand(
           console.log(
             chalk.green`\t${mod.label.padEnd(longestLabel)}`,
             chalk.bold.white`${mod.name.padEnd(longestName)}`,
+            chalk.bold.yellow`${versionRange.padEnd(20)}`,
             chalk.yellow`${mod.remote.padEnd(70)}`,
             mod.remark ? chalk.gray` - ${mod.remark}` : ''
           );
@@ -124,4 +135,23 @@ function formatVersionRange(versions: string[]): string {
   } else {
     return `${sorted[0]}-${sorted[sorted.length - 1]}`;
   }
+}
+
+/**
+ * Check if a mod supports the specified version or higher
+ */
+function supportsVersion(mod: Mod, requiredVersion: string): boolean {
+  if (!mod.supportedVersions || mod.supportedVersions.length === 0) {
+    return false;
+  }
+
+  const required = parseFloat(requiredVersion);
+  if (isNaN(required)) {
+    return false;
+  }
+
+  return mod.supportedVersions.some(v => {
+    const version = parseFloat(String(v));
+    return !isNaN(version) && version >= required;
+  });
 }
