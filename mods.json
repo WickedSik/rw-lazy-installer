@@ -192,7 +192,9 @@
   {
     "label": "RimJobWorld Ideology Addon",
     "name": "rimjobworld-ideology-addon",
-    "remote": "https://gitgud.io/Tittydragon/rimjobworld-ideology-addon.git"
+    "remote": "https://gitgud.io/Tittydragon/rimjobworld-ideology-addon.git",
+    "remark": "Use 'Sex Cult Essentials' instead",
+    "deprecated": true
   },
   {
     "label": "RimNude Unofficial",
@@ -589,7 +591,7 @@
   {
     "label": "Sex Cult Essentials",
     "name": "sex-cult-essentials",
-    "remote": "https://gitgud.io/Tittydragon/sex-cult-essentials.git",
+    "remote": "https://gitgud.io/sex-cult-essentials/sex-cult-essentials.git",
     "remark": "Not yet compatible with Sexperience Ideology due to the content overlap"
   },
   {
@@ -598,7 +600,8 @@
     "remote": "https://gitgud.io/ll.mirrors/sized-apparel-zero.git",
     "remark": "Bodies",
     "supportedVersions": [
-      1.5
+      1.5,
+      1.6
     ]
   },
   {
@@ -1395,7 +1398,8 @@
     "name": "yr-hentai-prime",
     "label": "Yuran Hentai Prime",
     "remote": "https://github.com/sutsutman/YR_Hentai_Prime.git",
-    "remark": "Extra"
+    "remark": "Extra",
+    "deprecated": true
   },
   {
     "name": "xenomorphtype",
