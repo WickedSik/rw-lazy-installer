@@ -3,8 +3,32 @@ import https from 'https'
 import chalk from 'chalk'
 import { XMLParser } from 'fast-xml-parser'
 
+const pkg = JSON.parse(await readFile(new URL('./package.json', import.meta.url)))
+const USER_AGENT = `${pkg.name}/${pkg.version} (RimWorld mod metadata fetcher)`
+
 async function importJson(file) {
     return JSON.parse(await readFile(new URL(file, import.meta.url)))
+}
+
+function buildGitLabApiUrl(host, projectPath, filePath, ref) {
+    const encodedProject = encodeURIComponent(projectPath)
+    const encodedFile = encodeURIComponent(filePath)
+    return `https://${host}/api/v4/projects/${encodedProject}/repository/files/${encodedFile}/raw?ref=${ref}`
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+function parseRetryAfter(header) {
+    if (!header) return null
+    const seconds = Number(header)
+    if (!Number.isNaN(seconds)) return seconds
+    const dateMs = Date.parse(header)
+    if (!Number.isNaN(dateMs)) {
+        return Math.max(0, Math.ceil((dateMs - Date.now()) / 1000))
+    }
+    return null
 }
 
 async function fetchModVersions(gitUrl, branch = null) {
@@ -15,14 +39,13 @@ async function fetchModVersions(gitUrl, branch = null) {
     let fallbackUrl = null
 
     if (gitUrl.includes('gitgud.io')) {
-        // GitGud pattern: https://gitgud.io/{user}/{repo}.git
-        const urlParts = gitUrl.replace('.git', '').replace('https://', '').split('/')
-        const baseUrl = `https://gitgud.io/${urlParts[1]}/${urlParts[2]}`
+        // GitGud (GitLab CE) — use API to bypass Cloudflare challenge
+        const projectPath = gitUrl.replace('.git', '').replace('https://gitgud.io/', '')
         if (branch) {
-            rawUrl = `${baseUrl}/-/raw/${branch}/About/About.xml`
+            rawUrl = buildGitLabApiUrl('gitgud.io', projectPath, 'About/About.xml', branch)
         } else {
-            rawUrl = `${baseUrl}/-/raw/master/About/About.xml`
-            fallbackUrl = `${baseUrl}/-/raw/main/About/About.xml`
+            rawUrl = buildGitLabApiUrl('gitgud.io', projectPath, 'About/About.xml', 'master')
+            fallbackUrl = buildGitLabApiUrl('gitgud.io', projectPath, 'About/About.xml', 'main')
         }
     } else if (gitUrl.includes('github.com')) {
         // GitHub pattern: https://github.com/{user}/{repo}.git
@@ -34,14 +57,13 @@ async function fetchModVersions(gitUrl, branch = null) {
             fallbackUrl = `https://raw.githubusercontent.com/${urlParts[0]}/${urlParts[1]}/main/About/About.xml`
         }
     } else if (gitUrl.includes('gitlab.com')) {
-        // GitLab pattern: https://gitlab.com/{user}/{repo}.git
-        const urlParts = gitUrl.replace('.git', '').replace('https://', '').split('/')
-        const baseUrl = `https://gitlab.com/${urlParts[1]}/${urlParts[2]}`
+        // GitLab — use API for consistency and challenge-free access
+        const projectPath = gitUrl.replace('.git', '').replace('https://gitlab.com/', '')
         if (branch) {
-            rawUrl = `${baseUrl}/-/raw/${branch}/About/About.xml`
+            rawUrl = buildGitLabApiUrl('gitlab.com', projectPath, 'About/About.xml', branch)
         } else {
-            rawUrl = `${baseUrl}/-/raw/main/About/About.xml`
-            fallbackUrl = `${baseUrl}/-/raw/master/About/About.xml`
+            rawUrl = buildGitLabApiUrl('gitlab.com', projectPath, 'About/About.xml', 'main')
+            fallbackUrl = buildGitLabApiUrl('gitlab.com', projectPath, 'About/About.xml', 'master')
         }
     }
 
@@ -65,7 +87,7 @@ async function fetchModVersions(gitUrl, branch = null) {
                 }
             }, 5000) // 5 second timeout per request
             
-            request = https.get(url, (response) => {
+            request = https.get(url, { headers: { 'User-Agent': USER_AGENT } }, (response) => {
                 clearTimeout(timeout)
                 
                 // Handle authentication errors and redirects
@@ -94,6 +116,17 @@ async function fetchModVersions(gitUrl, branch = null) {
                     return
                 }
                 
+                if (response.statusCode === 429) {
+                    if (!isResolved) {
+                        isResolved = true
+                        const err = new Error(`HTTP 429`)
+                        err.code = 'RATE_LIMITED'
+                        err.retryAfter = parseRetryAfter(response.headers['retry-after'])
+                        reject(err)
+                    }
+                    return
+                }
+
                 if (response.statusCode !== 200) {
                     if (!isResolved) {
                         isResolved = true
@@ -141,14 +174,28 @@ async function fetchModVersions(gitUrl, branch = null) {
         })
     }
     
+    const fetchWithRetry = async (url, retriesLeft = 1) => {
+        try {
+            return await tryFetch(url)
+        } catch (err) {
+            if (err.code === 'RATE_LIMITED' && retriesLeft > 0) {
+                const delaySeconds = err.retryAfter ?? 10
+                console.log(chalk.gray`  ⏸ Rate limited, sleeping ${delaySeconds}s before retry...`)
+                await sleep(delaySeconds * 1000)
+                return fetchWithRetry(url, retriesLeft - 1)
+            }
+            throw err
+        }
+    }
+
     try {
-        return await tryFetch(rawUrl)
+        return await fetchWithRetry(rawUrl)
     } catch (err) {
         if (fallbackUrl) {
             try {
-                return await tryFetch(fallbackUrl)
+                return await fetchWithRetry(fallbackUrl)
             } catch (fallbackErr) {
-                throw new Error(`Failed to fetch versions from both master and main branches`)
+                throw new Error(`Failed both branches: primary=${err.message}, fallback=${fallbackErr.message}`)
             }
         }
         throw err
@@ -157,7 +204,7 @@ async function fetchModVersions(gitUrl, branch = null) {
 
 /** @type {Array} */
 const rwModlist = await importJson('./mods.json')
-const masterlistUrl = 'https://gitgud.io/AblativeAbsolute/libidinous_loader_providers/-/raw/v0/providers.json'
+const masterlistUrl = buildGitLabApiUrl('gitgud.io', 'AblativeAbsolute/libidinous_loader_providers', 'providers.json', 'v0')
 const updateMasterlist = async (data) => {
     let versionSuccessCount = 0
     let versionFailCount = 0
@@ -270,7 +317,7 @@ if (skipVersions) {
 }
 
 let data = '';
-https.get(masterlistUrl, response => {
+https.get(masterlistUrl, { headers: { 'User-Agent': USER_AGENT } }, response => {
     response.on('data', d => data += d)
     response.on('end', () => {
         console.log(chalk.green`Downloaded masterlist`)

@@ -33,6 +33,6 @@
     },
     "bin": {
         "rw-lazy-installer": "dist/index.js",
-        "rw-update-masterlist": "dist/update-masterlist.js"
+        "rw-update-masterlist": "update-masterlist.js"
     }
 }
