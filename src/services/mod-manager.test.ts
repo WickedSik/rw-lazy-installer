@@ -119,7 +119,9 @@ describe('ModManager', () => {
       }),
       getRemoteUrl: vi.fn().mockResolvedValue('https://github.com/test/repo.git'),
       getRecentCommits: vi.fn().mockResolvedValue([]),
-      getCurrentCommit: vi.fn().mockResolvedValue('abc123')
+      getCurrentCommit: vi.fn().mockResolvedValue('abc123'),
+      setRemoteUrl: vi.fn().mockResolvedValue(undefined),
+      hasUncommittedChanges: vi.fn().mockResolvedValue(false)
     } as any;
 
     // Create ModManager instance
@@ -621,6 +623,140 @@ describe('ModManager', () => {
 
       expect(result).toEqual(commits);
       expect(mockRepository.getRecentCommits).toHaveBeenCalledWith('/test/mods/test', 3);
+    });
+  });
+
+  describe('relinkMod', () => {
+    const directoryName = 'test-mod-1';
+    const installDir = '/test/mods';
+    const directoryPath = '/test/mods/test-mod-1';
+
+    beforeEach(() => {
+      mockRepository.getRepositoryStatus = vi.fn().mockResolvedValue({
+        isValidRepo: true,
+        currentCommit: 'abc123',
+        remoteUrl: 'https://github.com/old/old.git'
+      });
+      mockRepository.setRemoteUrl = vi.fn().mockResolvedValue(undefined);
+      mockRepository.hasUncommittedChanges = vi.fn().mockResolvedValue(false);
+      mockConfig.findInstalledModByRemote = vi.fn().mockReturnValue(undefined);
+      mockConfig.getInstalledMods = vi.fn().mockReturnValue([]);
+    });
+
+    it('should rewrite remote and write a new installation record', async () => {
+      const result = await modManager.relinkMod(directoryName, 'test-mod-2', installDir);
+
+      expect(mockRepository.setRemoteUrl).toHaveBeenCalledWith(
+        directoryPath,
+        'https://github.com/test/test-mod-2.git'
+      );
+      expect(mockConfig.addOrUpdateInstalledMod).toHaveBeenCalled();
+      expect(result).toMatchObject({
+        modId: 'test-mod-2',
+        name: directoryName,
+        directory: directoryPath,
+        remote: 'https://github.com/test/test-mod-2.git'
+      });
+    });
+
+    it('should replace any existing installation record at that directory', async () => {
+      const previous: ModInstallation = {
+        modId: 'test-mod-1',
+        name: directoryName,
+        directory: directoryPath,
+        remote: 'https://github.com/test/test-mod-1.git',
+        installedAt: new Date('2023-01-01'),
+        lastUpdated: new Date('2023-01-01')
+      };
+      mockConfig.getInstalledMods = vi.fn().mockReturnValue([previous]);
+
+      const result = await modManager.relinkMod(directoryName, 'test-mod-2', installDir);
+
+      expect(mockConfig.removeInstalledMod).toHaveBeenCalledWith('test-mod-1');
+      expect(result.installedAt).toEqual(new Date('2023-01-01'));
+    });
+
+    it('should throw when target mod is not in registry', async () => {
+      await expect(modManager.relinkMod(directoryName, 'unknown', installDir))
+        .rejects
+        .toThrow("Mod 'unknown' is not a known mod");
+    });
+
+    it('should throw when directory is not a git repository', async () => {
+      mockRepository.getRepositoryStatus = vi.fn().mockResolvedValue({ isValidRepo: false });
+
+      await expect(modManager.relinkMod(directoryName, 'test-mod-2', installDir))
+        .rejects
+        .toThrow(`Directory '${directoryName}' is not a valid git repository`);
+    });
+
+    it('should throw when target is already installed at a different directory', async () => {
+      mockConfig.findInstalledModByRemote = vi.fn().mockReturnValue({
+        modId: 'test-mod-2',
+        name: 'somewhere-else',
+        directory: '/test/mods/somewhere-else',
+        remote: 'https://github.com/test/test-mod-2.git',
+        installedAt: new Date(),
+        lastUpdated: new Date()
+      });
+
+      await expect(modManager.relinkMod(directoryName, 'test-mod-2', installDir))
+        .rejects
+        .toThrow("already installed at /test/mods/somewhere-else");
+    });
+
+    it('should refuse when working tree is dirty without force', async () => {
+      mockRepository.hasUncommittedChanges = vi.fn().mockResolvedValue(true);
+
+      await expect(modManager.relinkMod(directoryName, 'test-mod-2', installDir))
+        .rejects
+        .toThrow(/uncommitted changes.*--force/);
+
+      expect(mockRepository.setRemoteUrl).not.toHaveBeenCalled();
+    });
+
+    it('should proceed when force is set despite dirty working tree', async () => {
+      mockRepository.hasUncommittedChanges = vi.fn().mockResolvedValue(true);
+
+      await modManager.relinkMod(directoryName, 'test-mod-2', installDir, { force: true });
+
+      expect(mockRepository.setRemoteUrl).toHaveBeenCalled();
+    });
+  });
+
+  describe('findActiveSibling', () => {
+    const siblingTestMods: Mod[] = [
+      { id: 'foo', name: 'foo', label: 'Foo', remote: 'https://x/foo.git', deprecated: true },
+      { id: 'foo-16', name: 'foo-16', label: 'Foo 1.6', remote: 'https://x/foo-16.git' },
+      { id: 'bar', name: 'bar', label: 'Bar', remote: 'https://x/bar.git', deprecated: true },
+      { id: 'baz', name: 'baz', label: 'Baz', remote: 'https://x/baz.git' },
+      { id: 'baz-9', name: 'baz-9', label: 'Baz 9', remote: 'https://x/baz-9.git' },
+    ];
+
+    let manager: ModManager;
+
+    beforeEach(() => {
+      manager = new ModManager(mockConfig, mockRepository, siblingTestMods);
+    });
+
+    it('should find an active -16 sibling for a deprecated entry', () => {
+      const result = manager.findActiveSibling(siblingTestMods[0]);
+      expect(result).toEqual(siblingTestMods[1]);
+    });
+
+    it('should return undefined when no sibling exists', () => {
+      const result = manager.findActiveSibling(siblingTestMods[2]);
+      expect(result).toBeUndefined();
+    });
+
+    it('should return undefined for non-deprecated entries', () => {
+      const result = manager.findActiveSibling(siblingTestMods[1]);
+      expect(result).toBeUndefined();
+    });
+
+    it('should not match suffixes outside the -1[3-9] range', () => {
+      const result = manager.findActiveSibling(siblingTestMods[3]);
+      expect(result).toBeUndefined();
     });
   });
 

@@ -7,7 +7,7 @@ import path from 'path';
 import { ConfigManager } from './services/config-manager.js';
 import { RepositoryManager } from './services/repository-manager.js';
 import { ModManager } from './services/mod-manager.js';
-import { checkCommand, installCommand, updateCommand, uninstallCommand, listCommand, searchCommand } from './commands/index.js';
+import { checkCommand, installCommand, updateCommand, uninstallCommand, listCommand, searchCommand, relinkCommand } from './commands/index.js';
 import { showHeader } from './utils/display.js';
 import type { Mod } from './types/mod';
 
@@ -102,6 +102,22 @@ program
       new: options.new,
       supported: options.supported
     }, modsRegistry);
+  });
+
+// Relink command
+program
+  .command('relink <directory> <target>')
+  .description('Rebind a directory to a different registry entry (rewrites git remote)')
+  .option('-f, --force', 'Relink even if the working tree has uncommitted changes')
+  .action(async (directory: string, target: string, options) => {
+    showHeader(version);
+    const installDir = getInstallationDir(program.opts());
+    await relinkCommand(modManager, installDir, {
+      ...program.opts(),
+      directory,
+      target,
+      force: options.force
+    });
   });
 
 // Search command

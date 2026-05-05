@@ -40,6 +40,18 @@ export async function checkCommand(
       } else {
         console.log(chalk.green`\tFound`, chalk.white`${mod.name}`, chalk.green`as installed mod`);
       }
+
+      const sibling = modManager.findActiveSibling(mod);
+      if (sibling) {
+        console.log(
+          chalk.yellow`\t  ⚠ matched deprecated entry; active successor`,
+          chalk.bold.white`${sibling.name}`,
+          chalk.yellow`available`
+        );
+        console.log(
+          chalk.gray`\t    run: rw-lazy-installer relink ${found.name} ${sibling.name}`
+        );
+      }
     }
 
     // Display missing mods (in config but not on disk)

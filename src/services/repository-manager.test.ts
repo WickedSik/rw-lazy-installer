@@ -9,6 +9,8 @@ vi.mock('simple-git', () => {
   const mockCheckIsRepo = vi.fn();
   const mockGetRemotes = vi.fn();
   const mockLog = vi.fn();
+  const mockRemote = vi.fn();
+  const mockStatus = vi.fn();
 
   const mockGit = {
     clone: mockClone,
@@ -18,6 +20,8 @@ vi.mock('simple-git', () => {
     checkIsRepo: mockCheckIsRepo,
     getRemotes: mockGetRemotes,
     log: mockLog,
+    remote: mockRemote,
+    status: mockStatus,
   };
 
   const simpleGit = vi.fn(() => mockGit);
@@ -31,6 +35,8 @@ vi.mock('simple-git', () => {
     mockCheckIsRepo,
     mockGetRemotes,
     mockLog,
+    mockRemote,
+    mockStatus,
   };
 
   return {
@@ -51,7 +57,9 @@ const {
   mockRevparse,
   mockCheckIsRepo,
   mockGetRemotes,
-  mockLog
+  mockLog,
+  mockRemote,
+  mockStatus
 } = getMocks();
 
 describe('RepositoryManager', () => {
@@ -73,6 +81,8 @@ describe('RepositoryManager', () => {
       latest: null,
       total: 0,
     });
+    mockRemote.mockResolvedValue('');
+    mockStatus.mockResolvedValue({ isClean: () => true });
   });
 
   afterEach(() => {
@@ -570,6 +580,56 @@ describe('RepositoryManager', () => {
       await expect(repoManager.cloneRepository(url, destination))
         .rejects
         .toThrow(`Failed to clone repository from ${url}: ${errorMessage}`);
+    });
+  });
+
+  describe('setRemoteUrl', () => {
+    it('should set the origin remote URL', async () => {
+      const path = '/test/repo';
+      const url = 'https://github.com/new/repo.git';
+
+      mockRemote.mockResolvedValueOnce('');
+
+      await repoManager.setRemoteUrl(path, url);
+
+      expect(mockRemote).toHaveBeenCalledWith(['set-url', 'origin', url]);
+    });
+
+    it('should throw a descriptive error when set-url fails', async () => {
+      const path = '/test/repo';
+      const url = 'https://github.com/new/repo.git';
+
+      mockRemote.mockRejectedValueOnce(new Error('fatal: No such remote'));
+
+      await expect(repoManager.setRemoteUrl(path, url))
+        .rejects
+        .toThrow(`Failed to set remote URL on ${path}: fatal: No such remote`);
+    });
+  });
+
+  describe('hasUncommittedChanges', () => {
+    it('should return false for a clean working tree', async () => {
+      mockStatus.mockResolvedValueOnce({ isClean: () => true });
+
+      const result = await repoManager.hasUncommittedChanges('/test/repo');
+
+      expect(result).toBe(false);
+    });
+
+    it('should return true when working tree has changes', async () => {
+      mockStatus.mockResolvedValueOnce({ isClean: () => false });
+
+      const result = await repoManager.hasUncommittedChanges('/test/repo');
+
+      expect(result).toBe(true);
+    });
+
+    it('should propagate errors from git status', async () => {
+      mockStatus.mockRejectedValueOnce(new Error('Not a git repo'));
+
+      await expect(repoManager.hasUncommittedChanges('/test/repo'))
+        .rejects
+        .toThrow('Not a git repo');
     });
   });
 });

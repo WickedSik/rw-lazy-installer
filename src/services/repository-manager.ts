@@ -157,4 +157,31 @@ export class RepositoryManager {
       return undefined;
     }
   }
+
+  /**
+   * Set the URL of the origin remote
+   */
+  async setRemoteUrl(path: string, url: string): Promise<void> {
+    try {
+      const repo = simpleGit({
+        ...this.gitOptions,
+        baseDir: path,
+      });
+      await repo.remote(['set-url', 'origin', url]);
+    } catch (error) {
+      throw new Error(`Failed to set remote URL on ${path}: ${(error as Error).message}`);
+    }
+  }
+
+  /**
+   * Check whether the working tree has uncommitted changes
+   */
+  async hasUncommittedChanges(path: string): Promise<boolean> {
+    const repo = simpleGit({
+      ...this.gitOptions,
+      baseDir: path,
+    });
+    const status = await repo.status();
+    return !status.isClean();
+  }
 }

@@ -145,6 +145,89 @@ export class ModManager {
   }
 
   /**
+   * Relink a directory on disk to a different registry entry.
+   * Rewrites the git remote, refreshes versions, and replaces the installation record.
+   */
+  async relinkMod(
+    directoryName: string,
+    targetModName: string,
+    installDir: string,
+    options: { force?: boolean } = {}
+  ): Promise<ModInstallation> {
+    const target = this.findMod(targetModName);
+    if (!target) {
+      throw new Error(`Mod '${targetModName}' is not a known mod`);
+    }
+
+    const directoryPath = path.join(installDir, directoryName);
+
+    const status = await this.repository.getRepositoryStatus(directoryPath);
+    if (!status.isValidRepo) {
+      throw new Error(`Directory '${directoryName}' is not a valid git repository`);
+    }
+
+    const existingTargetInstall = this.config.findInstalledModByRemote(target.remote);
+    if (existingTargetInstall && existingTargetInstall.directory !== directoryPath) {
+      throw new Error(
+        `Mod '${targetModName}' is already installed at ${existingTargetInstall.directory}`
+      );
+    }
+
+    if (!options.force) {
+      const dirty = await this.repository.hasUncommittedChanges(directoryPath);
+      if (dirty) {
+        throw new Error(
+          `Directory '${directoryName}' has uncommitted changes. Re-run with --force to relink anyway.`
+        );
+      }
+    }
+
+    const previousInstall = this.config.getInstalledMods()
+      .find(m => m.directory === directoryPath);
+
+    await this.repository.setRemoteUrl(directoryPath, target.remote);
+
+    let supportedVersions: string[] = [];
+    try {
+      supportedVersions = await this.extractModVersions(directoryPath);
+    } catch (error) {
+      // Version extraction is optional
+    }
+
+    if (previousInstall) {
+      this.config.removeInstalledMod(previousInstall.modId);
+    }
+
+    const installation: ModInstallation = {
+      modId: target.id,
+      name: directoryName,
+      directory: directoryPath,
+      remote: target.remote,
+      supportedVersions,
+      installedAt: previousInstall?.installedAt ?? new Date(),
+      lastUpdated: new Date(),
+    };
+
+    this.config.addOrUpdateInstalledMod(installation);
+    return installation;
+  }
+
+  /**
+   * Find the active sibling of a deprecated registry entry.
+   * Matches deprecated mods to a non-deprecated entry whose name is the
+   * deprecated name plus a `-1[3-9]` RimWorld-version suffix.
+   */
+  findActiveSibling(deprecatedMod: Mod): Mod | undefined {
+    if (!deprecatedMod.deprecated) return undefined;
+
+    return this.modsRegistry.find(candidate => {
+      if (candidate.deprecated) return false;
+      const match = candidate.name.match(/^(.+)-1[3-9]$/);
+      return match?.[1] === deprecatedMod.name;
+    });
+  }
+
+  /**
    * Uninstall a mod
    */
   async uninstallMod(modName: string): Promise<void> {
